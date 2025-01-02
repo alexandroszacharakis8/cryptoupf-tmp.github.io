@@ -149,8 +149,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="2.1" data-path="randomness-in-cryptography.html"><a href="randomness-in-cryptography.html#one-time-pad"><i class="fa fa-check"></i><b>2.1</b> One-time pad</a></li>
 <li class="chapter" data-level="2.2" data-path="randomness-in-cryptography.html"><a href="randomness-in-cryptography.html#sec:prngs"><i class="fa fa-check"></i><b>2.2</b> Pseudorandom generators</a></li>
-<li class="chapter" data-level="2.3" data-path="randomness-in-cryptography.html"><a href="randomness-in-cryptography.html#sec:examples"><i class="fa fa-check"></i><b>2.3</b> Linear feedback shift registers</a></li>
-<li class="chapter" data-level="2.4" data-path="randomness-in-cryptography.html"><a href="randomness-in-cryptography.html#true-randomness"><i class="fa fa-check"></i><b>2.4</b> True randomness</a></li>
+<li class="chapter" data-level="2.3" data-path="randomness-in-cryptography.html"><a href="randomness-in-cryptography.html#true-randomness"><i class="fa fa-check"></i><b>2.3</b> True randomness</a></li>
 <li class="chapter" data-level="" data-path="randomness-in-cryptography.html"><a href="randomness-in-cryptography.html#solved-exercises-1"><i class="fa fa-check"></i>Solved exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="block-ciphers.html"><a href="block-ciphers.html"><i class="fa fa-check"></i><b>3</b> Block ciphers</a>
@@ -354,7 +353,7 @@ cipher;</p></li>
 bits one by one. In contrast, block ciphers will split our plaintext in
 blocks of fixed length, and encrypt each of this as a single unit.</p>
 <div class="definition">
-<p><span id="def:unlabeled-div-35" class="definition"><strong>Definition 3.1  </strong></span><em>A</em> block cipher of length <span class="math inline">\(\ell\)</span> <em>is an encryption
+<p><span id="def:unlabeled-div-34" class="definition"><strong>Definition 3.1  </strong></span><em>A</em> block cipher of length <span class="math inline">\(\ell\)</span> <em>is an encryption
 scheme that encrypts a message of fixed length</em> <span class="math inline">\(\ell\)</span>.</p>
 </div>
 <p>When encrypting an arbitrarily large message, we will split it into
@@ -380,7 +379,7 @@ inside each of the algorithms, only that they work and they are secure.
 For example, we assume that <span class="math inline">\(\mathsf{Enc}\)</span> takes as input a plaintext
 <span class="math inline">\(\mathsf{m}\)</span> of length <span class="math inline">\(\ell\)</span> and produces a ciphertext <span class="math inline">\(\mathsf{c}\)</span>
 corresponding to <span class="math inline">\(\mathsf{m}\)</span>. We represent this by the diagram</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>This will allow us to discuss block ciphers in a
 more general way.</p>
 </div>
@@ -389,7 +388,7 @@ more general way.</p>
 <p>Assume that we want to encrypt a message <span class="math inline">\(\mathsf{m}\)</span> of length <span class="math inline">\(\ell n\)</span>
 with a block cipher. When the message length is not a multiple of the
 block length, some extra bytes are added to complete the last block.
-This is called <em>padding</em>.<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a> We start by splitting the message in
+This is called <em>padding</em>.<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a> We start by splitting the message in
 blocks <span class="math display">\[\mathsf{m}_1,\dots,\mathsf{m}_n,\]</span> each of them of length
 <span class="math inline">\(\ell\)</span>, so that they can be fed into our block cipher. The question is:
 do we encrypt each block in parallel? Is that secure? Or should we
@@ -400,7 +399,7 @@ determined by the <em>mode of operation</em> that we choose.</p>
 <p>In ECB mode, we take the most straightforward approach, and encrypt each
 block on its own: <span class="math display">\[\mathsf{c}_i=\mathsf{Enc}_k(\mathsf{m}_i).\]</span> The ECB
 mode is represented in the following diagram:
-<img src="_main_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
+<img src="_main_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>The main advantage of this approach is that, since each block is
 independent, we can make the operations in parallel, potentially saving
 computation time.</p>
@@ -415,7 +414,7 @@ that we would like to avoid.</p>
 image. Assume that we split the image into small squares of pixels, so
 that the bit length of each of these matches the length of our block
 cipher, and then use ECB-mode encryption on each square. Below you can
-see the result on an example image.<a href="#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a></p>
+see the result on an example image.<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a></p>
 <div class="center">
 <p><img src="assets/Tux.jpg" alt="image" /><img src="assets/Tux_ecb.jpg" alt="image" /></p>
 </div>
@@ -432,7 +431,7 @@ cipher is fed back into the input of the next iteration, by computing
 the <span class="math inline">\(\mathsf{XOR}\)</span> with the new input. More precisely:
 <span class="math display">\[\mathsf{c}_i=\mathsf{Enc}_k(\mathsf{m}_i\oplus \mathsf{c}_{i-1}).\]</span>
 The CBC mode is represented in the following diagram:
-<img src="_main_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
+<img src="_main_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Note that this does not work for the first block, since there is no
 previous ciphertext, and so we introduce something to replace it, which
 we call the <em>initialization vector</em> (often denoted by IV). By choosing
@@ -463,7 +462,7 @@ produced in blocks of length <span class="math inline">\(\ell\)</span>: <span cl
 &amp; \mathbf w_i = \mathsf{Enc}_k(\mathbf w_{i-1}), \\
 &amp; \mathsf{c}_i=\mathsf{m}_i\oplus \mathbf w_i. \\
 \end{aligned}\]</span> The OFB mode is represented in the following diagram:</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Again, we need an IV to feed into <span class="math inline">\(\mathsf{Enc}\)</span> in the first iteration.
 Observe that the block cipher and the feedback loop do not involve the
 message at all, which is simply <span class="math inline">\(\mathsf{XOR}\)</span>’ed with the result of
@@ -486,9 +485,9 @@ counter works as an IV that updates after encrypting each block.
     \end{aligned}\]</span> After the last iteration, the current value of the
 counter is also sent, together with the ciphertext. The CTR mode is
 represented in the following diagram:
-<img src="_main_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
+<img src="_main_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
 <div class="exercise">
-<p><span id="exr:unlabeled-div-36" class="exercise"><strong>Exercise 3.1  </strong></span><em>We have not discussed the decryption procedure of any
+<p><span id="exr:unlabeled-div-35" class="exercise"><strong>Exercise 3.1  </strong></span><em>We have not discussed the decryption procedure of any
 of the modes of operation. Given a <span class="math inline">\(\mathsf{Dec}\)</span> algorithm that
 recovers plaintexts encrypted with <span class="math inline">\(\mathsf{Enc}\)</span>, describe how
 decryption works for each mode of operation. Recall that the values of
@@ -503,7 +502,7 @@ of the most famous ones: the <em>Data Encryption Standard (DES)</em>, and its
 successor the <em>Advanced Encryption Standard (AES)</em>. DES was designed by
 a team at IBM in 1974, and became the first official encryption standard
 in the US in 1977. It remained as the recommended encryption scheme
-until 1999, when it was replaced by AES.<a href="#fn14" class="footnote-ref" id="fnref14"><sup>14</sup></a></p>
+until 1999, when it was replaced by AES.<a href="#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a></p>
 <div id="data-encryption-standard-des" class="section level3 hasAnchor" number="3.3.1">
 <h3><span class="header-section-number">3.3.1</span> Data Encryption Standard (DES)<a href="block-ciphers.html#data-encryption-standard-des" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>DES is a block cipher of length <span class="math inline">\(64\)</span>, which uses a key of <span class="math inline">\(56\)</span> bits.
@@ -554,7 +553,7 @@ achieving a good level of diffusion, propagating change through the
 whole ciphertext in the following rounds. Indeed, we have the following
 result.</p>
 <div class="proposition">
-<p><span id="prp:unlabeled-div-37" class="proposition"><strong>Proposition 3.1  </strong></span><em>By the end of the fifth round of DES, every single
+<p><span id="prp:unlabeled-div-36" class="proposition"><strong>Proposition 3.1  </strong></span><em>By the end of the fifth round of DES, every single
 bit of the current ciphertext depends on all the bits of the plaintext
 and all the bits of the key.</em></p>
 </div>
@@ -593,12 +592,128 @@ workings of AES.</p>
 <iframe width="720" height="405" src="https://www.youtube-nocookie.com/embed/mlzxpkdXP58" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 </div>
+<p>Let us now demonstrate how AES satisfies <em>diffusion</em> and <em>confusion</em>. To do this we will do the follwoing:</p>
+<ol style="list-style-type: decimal">
+<li><p><em>Confusion</em>: Sample a random message of 128 bits and encrypt it with a random key <span class="math inline">\(k\)</span>. Then encrypt it with another key <span class="math inline">\(k&#39;\)</span> that is the same as <span class="math inline">\(k\)</span> except that it has a random bit fliped and compare the two ciphertexts.</p></li>
+<li><p><em>Diffusion</em>: First encrypt a single AES block of a random message with a key <span class="math inline">\(k\)</span>. Then flip a single bit of the initial message and compare the two ciphertexts.</p></li>
+</ol>
+<p>What is the expected outcome in the experiments? In both cases we would want the two produced ciphertexts to be <em>completly unrelated</em>. That is, the two ciphertext should look like randomly sampled strings (although they are not!). In two random strings, the probability that the <span class="math inline">\(i\)</span>-th bit is different is 50%. Therefore, we expect that if the properties hold, <em>half of the bits will be different</em>. Note that this is a <em>probabilistic</em> argument and the result concernes the expected value. In other words, repeat the experiment sufficiently many times and the average of changed bits with converge to 64 (=128/2).</p>
+<p>We first present a <code>diffusion_confusion_util.sage</code> code snippet that contains two functions:
+1. <code>flip_random_bit</code>: flips a random bit from a 16 byte (=128 bit) message,
+2. <code>count_bit_diff</code>: counts the bits in which two byte strings differ.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="block-ciphers.html#cb3-1" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb3-2"><a href="block-ciphers.html#cb3-2" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="block-ciphers.html#cb3-3" tabindex="-1"></a><span class="kw">def</span> flip_random_bit(s):</span>
+<span id="cb3-4"><a href="block-ciphers.html#cb3-4" tabindex="-1"></a>  <span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb3-5"><a href="block-ciphers.html#cb3-5" tabindex="-1"></a><span class="co">  Flips a bit of a 16 byte string as follows:</span></span>
+<span id="cb3-6"><a href="block-ciphers.html#cb3-6" tabindex="-1"></a><span class="co">  1. Convert k from bytes to bits,</span></span>
+<span id="cb3-7"><a href="block-ciphers.html#cb3-7" tabindex="-1"></a><span class="co">  2. Choose a random position in the range [0,..,127]</span></span>
+<span id="cb3-8"><a href="block-ciphers.html#cb3-8" tabindex="-1"></a><span class="co">  3. Flip the bit of that position</span></span>
+<span id="cb3-9"><a href="block-ciphers.html#cb3-9" tabindex="-1"></a><span class="co">  4. Change back to bytes </span></span>
+<span id="cb3-10"><a href="block-ciphers.html#cb3-10" tabindex="-1"></a><span class="co">  &quot;&quot;&quot;</span></span>
+<span id="cb3-11"><a href="block-ciphers.html#cb3-11" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="block-ciphers.html#cb3-12" tabindex="-1"></a>  <span class="co">#Convert to bits</span></span>
+<span id="cb3-13"><a href="block-ciphers.html#cb3-13" tabindex="-1"></a>  s_bits <span class="op">=</span> <span class="st">&#39;&#39;</span>.join(<span class="ss">f&#39;</span><span class="sc">{</span>byte<span class="sc">:08b}</span><span class="ss">&#39;</span> <span class="cf">for</span> byte <span class="kw">in</span> s)</span>
+<span id="cb3-14"><a href="block-ciphers.html#cb3-14" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="block-ciphers.html#cb3-15" tabindex="-1"></a>  <span class="co"># Select a random bit to flip</span></span>
+<span id="cb3-16"><a href="block-ciphers.html#cb3-16" tabindex="-1"></a>  random_bit_index <span class="op">=</span> random.randint(<span class="dv">0</span>, <span class="bu">len</span>(s_bits) <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb3-17"><a href="block-ciphers.html#cb3-17" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="block-ciphers.html#cb3-18" tabindex="-1"></a>  <span class="co"># Flip the selected bit</span></span>
+<span id="cb3-19"><a href="block-ciphers.html#cb3-19" tabindex="-1"></a>  s_prime_bits <span class="op">=</span> (</span>
+<span id="cb3-20"><a href="block-ciphers.html#cb3-20" tabindex="-1"></a>      <span class="co"># before index it remains the same</span></span>
+<span id="cb3-21"><a href="block-ciphers.html#cb3-21" tabindex="-1"></a>      s_bits[:random_bit_index] <span class="op">+</span></span>
+<span id="cb3-22"><a href="block-ciphers.html#cb3-22" tabindex="-1"></a>      <span class="co"># flip index </span></span>
+<span id="cb3-23"><a href="block-ciphers.html#cb3-23" tabindex="-1"></a>      (<span class="st">&#39;1&#39;</span> <span class="cf">if</span> s_bits[random_bit_index] <span class="op">==</span> <span class="st">&#39;0&#39;</span> <span class="cf">else</span> <span class="st">&#39;0&#39;</span>) <span class="op">+</span></span>
+<span id="cb3-24"><a href="block-ciphers.html#cb3-24" tabindex="-1"></a>      <span class="co"># after index it remains the same</span></span>
+<span id="cb3-25"><a href="block-ciphers.html#cb3-25" tabindex="-1"></a>      s_bits[random_bit_index <span class="op">+</span> <span class="dv">1</span>:]</span>
+<span id="cb3-26"><a href="block-ciphers.html#cb3-26" tabindex="-1"></a>  )</span>
+<span id="cb3-27"><a href="block-ciphers.html#cb3-27" tabindex="-1"></a></span>
+<span id="cb3-28"><a href="block-ciphers.html#cb3-28" tabindex="-1"></a>  <span class="co"># Convert back to bytes</span></span>
+<span id="cb3-29"><a href="block-ciphers.html#cb3-29" tabindex="-1"></a>  s_prime <span class="op">=</span> <span class="bu">bytes</span>(<span class="bu">int</span>(s_prime_bits[i:i<span class="op">+</span><span class="dv">8</span>], <span class="dv">2</span>) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">127</span>, <span class="dv">8</span>))</span>
+<span id="cb3-30"><a href="block-ciphers.html#cb3-30" tabindex="-1"></a></span>
+<span id="cb3-31"><a href="block-ciphers.html#cb3-31" tabindex="-1"></a>  <span class="cf">return</span> s_prime</span>
+<span id="cb3-32"><a href="block-ciphers.html#cb3-32" tabindex="-1"></a></span>
+<span id="cb3-33"><a href="block-ciphers.html#cb3-33" tabindex="-1"></a><span class="kw">def</span> count_bit_diff(b1, b2):</span>
+<span id="cb3-34"><a href="block-ciphers.html#cb3-34" tabindex="-1"></a>  <span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb3-35"><a href="block-ciphers.html#cb3-35" tabindex="-1"></a><span class="co">  Counts how many bits are different in b1 b2</span></span>
+<span id="cb3-36"><a href="block-ciphers.html#cb3-36" tabindex="-1"></a><span class="co">  &quot;&quot;&quot;</span></span>
+<span id="cb3-37"><a href="block-ciphers.html#cb3-37" tabindex="-1"></a>  diff_count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb3-38"><a href="block-ciphers.html#cb3-38" tabindex="-1"></a>  <span class="co"># repeat for each byte</span></span>
+<span id="cb3-39"><a href="block-ciphers.html#cb3-39" tabindex="-1"></a>  <span class="cf">for</span> byte1, byte2 <span class="kw">in</span> <span class="bu">zip</span>(b1, b2):</span>
+<span id="cb3-40"><a href="block-ciphers.html#cb3-40" tabindex="-1"></a>    <span class="co"># Convert each byte to an 8-bit binary string and compare bit by bit</span></span>
+<span id="cb3-41"><a href="block-ciphers.html#cb3-41" tabindex="-1"></a>    <span class="cf">for</span> bit1, bit2 <span class="kw">in</span> <span class="bu">zip</span>(<span class="ss">f&#39;</span><span class="sc">{</span>byte1<span class="sc">:08b}</span><span class="ss">&#39;</span>, <span class="ss">f&#39;</span><span class="sc">{</span>byte2<span class="sc">:08b}</span><span class="ss">&#39;</span>):</span>
+<span id="cb3-42"><a href="block-ciphers.html#cb3-42" tabindex="-1"></a>      <span class="cf">if</span> bit1 <span class="op">!=</span> bit2:</span>
+<span id="cb3-43"><a href="block-ciphers.html#cb3-43" tabindex="-1"></a>        diff_count <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb3-44"><a href="block-ciphers.html#cb3-44" tabindex="-1"></a>  <span class="cf">return</span> diff_count</span></code></pre></div>
+<p>We are now ready to conduct the experiments. To this end we use the AES recipie from the cookbook.
+Run these experiments to verify that in both experiments the results converge to 64 as expected.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="block-ciphers.html#cb4-1" tabindex="-1"></a><span class="co"># load the utils and the aes128 recipie</span></span>
+<span id="cb4-2"><a href="block-ciphers.html#cb4-2" tabindex="-1"></a>load(<span class="st">&#39;diffusion_confusion_util.sage&#39;</span>)</span>
+<span id="cb4-3"><a href="block-ciphers.html#cb4-3" tabindex="-1"></a>load(<span class="st">&#39;aes128.sage&#39;</span>)</span>
+<span id="cb4-4"><a href="block-ciphers.html#cb4-4" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="block-ciphers.html#cb4-5" tabindex="-1"></a><span class="kw">def</span> diffusion_experiment(): </span>
+<span id="cb4-6"><a href="block-ciphers.html#cb4-6" tabindex="-1"></a>  <span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb4-7"><a href="block-ciphers.html#cb4-7" tabindex="-1"></a><span class="co">  Encrypts a random message with AES128 under a key k. </span></span>
+<span id="cb4-8"><a href="block-ciphers.html#cb4-8" tabindex="-1"></a><span class="co">  Then flip a bit of m and encrypt the result with k.</span></span>
+<span id="cb4-9"><a href="block-ciphers.html#cb4-9" tabindex="-1"></a><span class="co">  Output the number of bits where the two ciphertexts differ.</span></span>
+<span id="cb4-10"><a href="block-ciphers.html#cb4-10" tabindex="-1"></a><span class="co">  &quot;&quot;&quot;</span></span>
+<span id="cb4-11"><a href="block-ciphers.html#cb4-11" tabindex="-1"></a>  k <span class="op">=</span> aes_keygen()</span>
+<span id="cb4-12"><a href="block-ciphers.html#cb4-12" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="block-ciphers.html#cb4-13" tabindex="-1"></a>  <span class="co"># sample a random message of 16 bytes</span></span>
+<span id="cb4-14"><a href="block-ciphers.html#cb4-14" tabindex="-1"></a>  m1 <span class="op">=</span>  <span class="st">b&#39;&#39;</span>.join(randrange(<span class="dv">0</span>,<span class="dv">256</span>).to_bytes() <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">16</span>))</span>
+<span id="cb4-15"><a href="block-ciphers.html#cb4-15" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="block-ciphers.html#cb4-16" tabindex="-1"></a>  <span class="co"># encrypt the message</span></span>
+<span id="cb4-17"><a href="block-ciphers.html#cb4-17" tabindex="-1"></a>  c1 <span class="op">=</span> aes_enc(k, m1)</span>
+<span id="cb4-18"><a href="block-ciphers.html#cb4-18" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="block-ciphers.html#cb4-19" tabindex="-1"></a>  <span class="co"># flip a bit of the message and encrypt</span></span>
+<span id="cb4-20"><a href="block-ciphers.html#cb4-20" tabindex="-1"></a>  m2 <span class="op">=</span> flip_random_bit(m1)</span>
+<span id="cb4-21"><a href="block-ciphers.html#cb4-21" tabindex="-1"></a>  c2 <span class="op">=</span> aes_enc(k, m2)</span>
+<span id="cb4-22"><a href="block-ciphers.html#cb4-22" tabindex="-1"></a></span>
+<span id="cb4-23"><a href="block-ciphers.html#cb4-23" tabindex="-1"></a>  <span class="co"># Count the number of bits c1, c2 differ</span></span>
+<span id="cb4-24"><a href="block-ciphers.html#cb4-24" tabindex="-1"></a>  <span class="cf">return</span> count_bit_diff(c1, c2)</span>
+<span id="cb4-25"><a href="block-ciphers.html#cb4-25" tabindex="-1"></a></span>
+<span id="cb4-26"><a href="block-ciphers.html#cb4-26" tabindex="-1"></a><span class="kw">def</span> confusion_experiment(): </span>
+<span id="cb4-27"><a href="block-ciphers.html#cb4-27" tabindex="-1"></a>  <span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb4-28"><a href="block-ciphers.html#cb4-28" tabindex="-1"></a><span class="co">  Encrypts a random message with AES128 under a key k. </span></span>
+<span id="cb4-29"><a href="block-ciphers.html#cb4-29" tabindex="-1"></a><span class="co">  Then flip a bit of k and encrypt the same message again.</span></span>
+<span id="cb4-30"><a href="block-ciphers.html#cb4-30" tabindex="-1"></a><span class="co">  Output the number of bits where the two ciphertexts differ.</span></span>
+<span id="cb4-31"><a href="block-ciphers.html#cb4-31" tabindex="-1"></a><span class="co">  &quot;&quot;&quot;</span></span>
+<span id="cb4-32"><a href="block-ciphers.html#cb4-32" tabindex="-1"></a>  k1 <span class="op">=</span> aes_keygen()</span>
+<span id="cb4-33"><a href="block-ciphers.html#cb4-33" tabindex="-1"></a></span>
+<span id="cb4-34"><a href="block-ciphers.html#cb4-34" tabindex="-1"></a>  <span class="co"># sample a random message of 16 bytes</span></span>
+<span id="cb4-35"><a href="block-ciphers.html#cb4-35" tabindex="-1"></a>  m <span class="op">=</span>  <span class="st">b&#39;&#39;</span>.join(randrange(<span class="dv">0</span>,<span class="dv">256</span>).to_bytes() <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">16</span>))</span>
+<span id="cb4-36"><a href="block-ciphers.html#cb4-36" tabindex="-1"></a></span>
+<span id="cb4-37"><a href="block-ciphers.html#cb4-37" tabindex="-1"></a>  <span class="co"># encrypt the message</span></span>
+<span id="cb4-38"><a href="block-ciphers.html#cb4-38" tabindex="-1"></a>  c1 <span class="op">=</span> aes_enc(k1, m)</span>
+<span id="cb4-39"><a href="block-ciphers.html#cb4-39" tabindex="-1"></a></span>
+<span id="cb4-40"><a href="block-ciphers.html#cb4-40" tabindex="-1"></a>  <span class="co"># flip a bit of the key and encrypt</span></span>
+<span id="cb4-41"><a href="block-ciphers.html#cb4-41" tabindex="-1"></a>  k2 <span class="op">=</span> flip_random_bit(k1)</span>
+<span id="cb4-42"><a href="block-ciphers.html#cb4-42" tabindex="-1"></a>  c2 <span class="op">=</span> aes_enc(k2, m)</span>
+<span id="cb4-43"><a href="block-ciphers.html#cb4-43" tabindex="-1"></a></span>
+<span id="cb4-44"><a href="block-ciphers.html#cb4-44" tabindex="-1"></a>  <span class="co"># Count the number of bits c1, c2 differ</span></span>
+<span id="cb4-45"><a href="block-ciphers.html#cb4-45" tabindex="-1"></a>  <span class="cf">return</span> count_bit_diff(c1, c2)</span>
+<span id="cb4-46"><a href="block-ciphers.html#cb4-46" tabindex="-1"></a></span>
+<span id="cb4-47"><a href="block-ciphers.html#cb4-47" tabindex="-1"></a><span class="co"># run n iterations of each experiment</span></span>
+<span id="cb4-48"><a href="block-ciphers.html#cb4-48" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">100000</span></span>
+<span id="cb4-49"><a href="block-ciphers.html#cb4-49" tabindex="-1"></a></span>
+<span id="cb4-50"><a href="block-ciphers.html#cb4-50" tabindex="-1"></a>diffusion_result <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb4-51"><a href="block-ciphers.html#cb4-51" tabindex="-1"></a>confusion_result <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb4-52"><a href="block-ciphers.html#cb4-52" tabindex="-1"></a></span>
+<span id="cb4-53"><a href="block-ciphers.html#cb4-53" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb4-54"><a href="block-ciphers.html#cb4-54" tabindex="-1"></a>  diffusion_result <span class="op">=</span> diffusion_result <span class="op">+</span> diffusion_experiment()</span>
+<span id="cb4-55"><a href="block-ciphers.html#cb4-55" tabindex="-1"></a>  confusion_result <span class="op">=</span> confusion_result <span class="op">+</span> confusion_experiment()</span>
+<span id="cb4-56"><a href="block-ciphers.html#cb4-56" tabindex="-1"></a></span>
+<span id="cb4-57"><a href="block-ciphers.html#cb4-57" tabindex="-1"></a>diffusion_result <span class="op">=</span> <span class="bu">float</span>(diffusion_result <span class="op">/</span> n)</span>
+<span id="cb4-58"><a href="block-ciphers.html#cb4-58" tabindex="-1"></a>confusion_result <span class="op">=</span> <span class="bu">float</span>(confusion_result <span class="op">/</span> n)</span>
+<span id="cb4-59"><a href="block-ciphers.html#cb4-59" tabindex="-1"></a></span>
+<span id="cb4-60"><a href="block-ciphers.html#cb4-60" tabindex="-1"></a><span class="bu">print</span>(diffusion_result)</span>
+<span id="cb4-61"><a href="block-ciphers.html#cb4-61" tabindex="-1"></a><span class="bu">print</span>(confusion_result)</span></code></pre></div>
 </div>
 </div>
 <div id="solved-exercises-2" class="section level2 unnumbered hasAnchor">
 <h2>Solved exercises<a href="block-ciphers.html#solved-exercises-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="exercise">
-<p><span id="exr:unlabeled-div-38" class="exercise"><strong>Exercise 3.2  </strong></span><em>Consider the following mode of operation: to encrypt a block apply the operation
+<p><span id="exr:unlabeled-div-37" class="exercise"><strong>Exercise 3.2  </strong></span><em>Consider the following mode of operation: to encrypt a block apply the operation
 <span class="math inline">\(\mathsf c_i = \mathsf{Enc_{k}}(\mathsf{Enc_{k}}(\mathsf m_i)\oplus\mathsf m_{i-1})\)</span>. Let
 <span class="math inline">\(\mathsf m_1,\ldots,\mathsf m_n\)</span> be a message you want to encrypt.</em></p>
 <ol style="list-style-type: decimal">
@@ -607,7 +722,7 @@ workings of AES.</p>
 </ol>
 </div>
 <div class="solution">
-<p><span id="unlabeled-div-39" class="solution"><em>Solution</em>. </span></p>
+<p><span id="unlabeled-div-38" class="solution"><em>Solution</em>. </span></p>
 <ol style="list-style-type: decimal">
 <li><p>For <span class="math inline">\(\mathsf m_1\)</span> we don’t have a corresponding <span class="math inline">\(\mathsf m_0\)</span> to apply formula. We need to send an IV that will be public and correspond to <span class="math inline">\(\mathsf m_0\)</span>. Simply set <span class="math inline">\(\mathsf m_0 = \text{IV}\)</span> for a random IV and apply the formula.</p></li>
 <li><p>In this type of exercises, you should always keep in mind that you need to “solve” the equation for <span class="math inline">\(\mathsf m_i\)</span>. To “move” stuff in the left and right hand side, use the inverse functions. For <span class="math inline">\(\mathsf{Enc}\)</span> this should be <span class="math inline">\(\mathsf{Dec}\)</span> and for <span class="math inline">\(\oplus x\)</span> it is itself (<span class="math inline">\(a \oplus x \oplus x = a\oplus 0 = a)\)</span>. You should be careful to apply the operations in the correct order. Let’s now start recovering <span class="math inline">\(\mathsf{m}_i\)</span>.</p>
@@ -628,17 +743,17 @@ workings of AES.</p>
 </ol>
 </div>
 <div class="exercise">
-<p><span id="exr:unlabeled-div-40" class="exercise"><strong>Exercise 3.3  </strong></span><em>You want to encrypt your personal computer’s hard drive. After reviewing the options you have, you decide to use AES as the block cipher but you are unsure whether it would be
+<p><span id="exr:unlabeled-div-39" class="exercise"><strong>Exercise 3.3  </strong></span><em>You want to encrypt your personal computer’s hard drive. After reviewing the options you have, you decide to use AES as the block cipher but you are unsure whether it would be
 better to use CBC mode or Counter mode. What would you choose and why? Note that both modes are secure so there is no security concern.</em></p>
 </div>
 <div class="solution">
-<p><span id="unlabeled-div-41" class="solution"><em>Solution</em>. </span>Since security is not a concern, you should consider efficiency. How do the modes compares to each other efficiency wise? The crucial observation is that CBC is <em>sequential</em> while Counter mode is not. This means that in order to decrypt the <span class="math inline">\(i\)</span>-th block using CBC, you need to <em>first decrypt all blocks from <span class="math inline">\(1\)</span> to <span class="math inline">\(i-1\)</span></em>. In contrast to that, you can directly use Counter mode to decrypt it. Since you certainly wouldn’t want to decrypt a bunch of
+<p><span id="unlabeled-div-40" class="solution"><em>Solution</em>. </span>Since security is not a concern, you should consider efficiency. How do the modes compares to each other efficiency wise? The crucial observation is that CBC is <em>sequential</em> while Counter mode is not. This means that in order to decrypt the <span class="math inline">\(i\)</span>-th block using CBC, you need to <em>first decrypt all blocks from <span class="math inline">\(1\)</span> to <span class="math inline">\(i-1\)</span></em>. In contrast to that, you can directly use Counter mode to decrypt it. Since you certainly wouldn’t want to decrypt a bunch of
 blocks each time you access the <span class="math inline">\(i\)</span>-th block, Counter mode is the clear choice.</p>
 <p>Note also that since Counter mode is not sequential, you can also encrypt/decrypt blocks
 in parallel.</p>
 </div>
 <div class="exercise">
-<p><span id="exr:unlabeled-div-42" class="exercise"><strong>Exercise 3.4  </strong></span></p>
+<p><span id="exr:unlabeled-div-41" class="exercise"><strong>Exercise 3.4  </strong></span></p>
 <ol style="list-style-type: decimal">
 <li><p><em>You are using a block cipher with counter mode to encrypt a message consisting of <span class="math inline">\(n\)</span> blocks.
 The <span class="math inline">\(i\)</span>-th block is corrupted during transit (some bits are flipped). Which blocks would be affected by that?</em></p></li>
@@ -646,7 +761,7 @@ The <span class="math inline">\(i\)</span>-th block is corrupted during transit 
 </ol>
 </div>
 <div class="solution">
-<p><span id="unlabeled-div-43" class="solution"><em>Solution</em>. </span></p>
+<p><span id="unlabeled-div-42" class="solution"><em>Solution</em>. </span></p>
 <ol style="list-style-type: decimal">
 <li><p>First, let’s recall how decryption of counter mode works. To decrypt the <span class="math inline">\(j\)</span>-th block, we compute <span class="math inline">\(\mathsf{m}_j=\mathsf{c}_j\oplus\textsf{Enc}_k(\mathsf{ctr}_j)\)</span>. This means each
 ciphertext is not affected by the previous and next ciphertexts. Thus, only the <span class="math inline">\(i\)</span>-th block corresponding to <span class="math inline">\(\mathsf{m}_i\)</span> will not be correctly decrypted.</p></li>
@@ -657,10 +772,10 @@ when <span class="math inline">\(j-1=i\)</span> we will not retrieve the correct
 </ol>
 </div>
 <div class="exercise">
-<p><span id="exr:unlabeled-div-44" class="exercise"><strong>Exercise 3.5  </strong></span><em>You use the counter mode but decide to make a modification (spoiler alert: this is almost never a good idea!). Instead of picking a random IV, you always start with <span class="math inline">\(IV = 1\)</span>. Is your custom mode of operation secure? Why? </em></p>
+<p><span id="exr:unlabeled-div-43" class="exercise"><strong>Exercise 3.5  </strong></span><em>You use the counter mode but decide to make a modification (spoiler alert: this is almost never a good idea!). Instead of picking a random IV, you always start with <span class="math inline">\(IV = 1\)</span>. Is your custom mode of operation secure? Why? </em></p>
 </div>
 <div class="solution">
-<p><span id="unlabeled-div-45" class="solution"><em>Solution</em>. </span>This custom mode <em>is not secure</em>! The problem is that you use the same IV each time you encrypt a message. Consider for simplicity the case where you encrypt two messages <span class="math inline">\(\mathsf m = (\mathsf m_1, \ldots, \mathsf m_n)\)</span> and
+<p><span id="unlabeled-div-44" class="solution"><em>Solution</em>. </span>This custom mode <em>is not secure</em>! The problem is that you use the same IV each time you encrypt a message. Consider for simplicity the case where you encrypt two messages <span class="math inline">\(\mathsf m = (\mathsf m_1, \ldots, \mathsf m_n)\)</span> and
 <span class="math inline">\(\mathsf m&#39; = (\mathsf m&#39;_1, \ldots, \mathsf m&#39;_n)\)</span>. An adversary sees the two corresponding ciphertexts. It now knows that<br />
 <span class="math display">\[
 \mathsf c_i = \mathsf m_i \oplus \mathsf{Enc_k} (i),\qquad
@@ -678,14 +793,14 @@ XORing the two ciphertexts, it can learn the XOR of the two plaintexts! Indeed,
 Note that this type of attack has other implications as well. You should make sure that each counter is not used twice. Therefore the block should be large enough so the probability that you use the same counter is negligible as long as you sample it randomly.</p>
 </div>
 <div class="exercise">
-<p><span id="exr:unlabeled-div-46" class="exercise"><strong>Exercise 3.6  </strong></span><em>Recall that OTP is not secure if you use the same key twice. </em></p>
+<p><span id="exr:unlabeled-div-45" class="exercise"><strong>Exercise 3.6  </strong></span><em>Recall that OTP is not secure if you use the same key twice. </em></p>
 <ol style="list-style-type: decimal">
 <li><p><em>If you use the same key to encrypt a message <span class="math inline">\(\mathsf m_1,\ldots,\mathsf m_n\)</span> with OTP, what mode of operation are you using?</em></p></li>
 <li><p><em>You decide to use OTP as the block cipher in CBC mode. That is, you pick a random key <span class="math inline">\(\mathsf{k}\)</span> and use <span class="math inline">\(\oplus \mathsf k\)</span> as the block cipher function. Is this a secure approach?</em></p></li>
 </ol>
 </div>
 <div class="solution">
-<p><span id="unlabeled-div-47" class="solution"><em>Solution</em>. </span></p>
+<p><span id="unlabeled-div-46" class="solution"><em>Solution</em>. </span></p>
 <ol style="list-style-type: decimal">
 <li><p>This corresponds to the ECB mode. By definition, the ECB mode applies the same block cipher in parallel.</p></li>
 <li><p>This is not a secure approach. It suffers from the problems that we encountered when using OTP with the same key. Let us be more concrete. To encrypt a message you do the following:</p></li>
@@ -722,17 +837,17 @@ and therefore we can learn the XOR value of each block.</p>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="12">
-<li id="fn12"><p>One must be careful when choosing padding, as some choices are
+<ol start="11">
+<li id="fn11"><p>One must be careful when choosing padding, as some choices are
 vulnerable to certain attacks in some modes of operation. An example
 of this is the padding oracle attack:
-<a href="https://en.wikipedia.org/wiki/Padding_oracle_attack" class="uri">https://en.wikipedia.org/wiki/Padding_oracle_attack</a>.<a href="block-ciphers.html#fnref12" class="footnote-back">↩︎</a></p></li>
-<li id="fn13"><p>Source:
+<a href="https://en.wikipedia.org/wiki/Padding_oracle_attack" class="uri">https://en.wikipedia.org/wiki/Padding_oracle_attack</a>.<a href="block-ciphers.html#fnref11" class="footnote-back">↩︎</a></p></li>
+<li id="fn12"><p>Source:
 <a href="https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation" class="uri">https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation</a>.
 Images by Larry Ewing (<a href="lewing@isc.tamu.edu">lewing@isc.tamu.edu</a>)
-and GIMP (<a href="https://www.gimp.org/" class="uri">https://www.gimp.org/</a>).<a href="block-ciphers.html#fnref13" class="footnote-back">↩︎</a></p></li>
-<li id="fn14"><p>Some interesting bits of history around DES and NSA involvement
-can be found in Chapter 3 of Christof Paar and Jan Pelzl. <em>Understanding cryptography: a textbook for students and practitioners</em>. Springer Science &amp; Business Media, 2009..<a href="block-ciphers.html#fnref14" class="footnote-back">↩︎</a></p></li>
+and GIMP (<a href="https://www.gimp.org/" class="uri">https://www.gimp.org/</a>).<a href="block-ciphers.html#fnref12" class="footnote-back">↩︎</a></p></li>
+<li id="fn13"><p>Some interesting bits of history around DES and NSA involvement
+can be found in Chapter 3 of Christof Paar and Jan Pelzl. <em>Understanding cryptography: a textbook for students and practitioners</em>. Springer Science &amp; Business Media, 2009..<a href="block-ciphers.html#fnref13" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

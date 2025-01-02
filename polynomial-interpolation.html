@@ -149,8 +149,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="2.1" data-path="randomness-in-cryptography.html"><a href="randomness-in-cryptography.html#one-time-pad"><i class="fa fa-check"></i><b>2.1</b> One-time pad</a></li>
 <li class="chapter" data-level="2.2" data-path="randomness-in-cryptography.html"><a href="randomness-in-cryptography.html#sec:prngs"><i class="fa fa-check"></i><b>2.2</b> Pseudorandom generators</a></li>
-<li class="chapter" data-level="2.3" data-path="randomness-in-cryptography.html"><a href="randomness-in-cryptography.html#sec:examples"><i class="fa fa-check"></i><b>2.3</b> Linear feedback shift registers</a></li>
-<li class="chapter" data-level="2.4" data-path="randomness-in-cryptography.html"><a href="randomness-in-cryptography.html#true-randomness"><i class="fa fa-check"></i><b>2.4</b> True randomness</a></li>
+<li class="chapter" data-level="2.3" data-path="randomness-in-cryptography.html"><a href="randomness-in-cryptography.html#true-randomness"><i class="fa fa-check"></i><b>2.3</b> True randomness</a></li>
 <li class="chapter" data-level="" data-path="randomness-in-cryptography.html"><a href="randomness-in-cryptography.html#solved-exercises-1"><i class="fa fa-check"></i>Solved exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="block-ciphers.html"><a href="block-ciphers.html"><i class="fa fa-check"></i><b>3</b> Block ciphers</a>
@@ -340,7 +339,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 determine a line. Or equivalently: given two different points in a
 plane, there is exactly one line that contains both.</p>
 <p>More formally, let <span class="math inline">\((x_0,y_0)\)</span> and <span class="math inline">\((x_1,y_1)\)</span> be points in
-<span class="math inline">\(\mathbb{R}^2\)</span>, such that <span class="math inline">\(x_0\neq x_1\)</span>.<a href="#fn49" class="footnote-ref" id="fnref49"><sup>49</sup></a> Then there is a unique
+<span class="math inline">\(\mathbb{R}^2\)</span>, such that <span class="math inline">\(x_0\neq x_1\)</span>.<a href="#fn48" class="footnote-ref" id="fnref48"><sup>48</sup></a> Then there is a unique
 polynomial <span class="math inline">\(p(X)\)</span> of degree at most <span class="math inline">\(1\)</span> such that
 <span class="math display">\[p(x_0)=y_0,\qquad \text{and} \qquad p(x_1)=y_1.\]</span> Although can find
 this polynomial by finding the slope of the line, we will show another
@@ -364,7 +363,7 @@ can find another polynomial <span class="math inline">\(\ell_1(X)\)</span> that 
 <span class="math inline">\(x_1\)</span>. Finally, the solution to our original problem will be
 <span class="math display">\[p(X)=y_0\ell_0(X)+y_1\ell_1(X).\]</span></p>
 <div class="exercise">
-<p><span id="exr:unlabeled-div-180" class="exercise"><strong>Exercise C.1  </strong></span><em>Check that this polynomial has degree at most <span class="math inline">\(1\)</span>,
+<p><span id="exr:unlabeled-div-179" class="exercise"><strong>Exercise C.1  </strong></span><em>Check that this polynomial has degree at most <span class="math inline">\(1\)</span>,
 that <span class="math inline">\(p(x_0)=y_0\)</span> and <span class="math inline">\(p(x_1)=y_1\)</span>.</em></p>
 </div>
 <p>It is easy to check that this polynomial verifies the conditions above.
@@ -376,7 +375,7 @@ points, and so on. Moreover, this also works over a finite field
 <span class="math inline">\(\mathbb{F}_p\)</span> for any prime <span class="math inline">\(p\)</span>, when the operations are considered
 modulo <span class="math inline">\(p\)</span> and division is inversion modulo <span class="math inline">\(p\)</span>.</p>
 <div class="proposition">
-<p><span id="prp:unlabeled-div-181" class="proposition"><strong>Proposition C.1  </strong></span><em>Let <span class="math inline">\(n\in\mathbb{N}\)</span>, and let <span class="math inline">\(p\in\mathbb{Z}\)</span> be a
+<p><span id="prp:unlabeled-div-180" class="proposition"><strong>Proposition C.1  </strong></span><em>Let <span class="math inline">\(n\in\mathbb{N}\)</span>, and let <span class="math inline">\(p\in\mathbb{Z}\)</span> be a
 prime number. Consider <span class="math inline">\(n+1\)</span> pairs <span class="math inline">\((x_i,y_i)\)</span>, for <span class="math inline">\(i=0,\dots,n\)</span>, of
 points in <span class="math inline">\(\mathbb{F}_p\)</span>, such that the <span class="math inline">\(x_i\)</span> are pairwise different.
 Then, there is a unique polynomial <span class="math inline">\(p(X)\)</span> of degree at most <span class="math inline">\(n\)</span> such
@@ -414,16 +413,16 @@ not increase the degree (although they might reduce it), the polynomial
 <span class="math inline">\(p(X)\)</span> will have degree at most <span class="math inline">\(m\)</span>. Therefore, this is the Lagrange
 interpolation polynomial that we were looking for.</p>
 <div class="exercise">
-<p><span id="exr:unlabeled-div-182" class="exercise"><strong>Exercise C.2  </strong></span><em>Compute the Lagrange interpolation polynomial
+<p><span id="exr:unlabeled-div-181" class="exercise"><strong>Exercise C.2  </strong></span><em>Compute the Lagrange interpolation polynomial
 corresponding to the points <span class="math inline">\((0,1),(1,-1),(2,2),(3,8)\)</span>.</em></p>
 </div>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="49">
-<li id="fn49"><p>We require the <span class="math inline">\(x\)</span>-coordinates to be different because we want to
+<ol start="48">
+<li id="fn48"><p>We require the <span class="math inline">\(x\)</span>-coordinates to be different because we want to
 formulate this in terms of functions, and a function cannot have two
-outputs for the same input.<a href="polynomial-interpolation.html#fnref49" class="footnote-back">↩︎</a></p></li>
+outputs for the same input.<a href="polynomial-interpolation.html#fnref48" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

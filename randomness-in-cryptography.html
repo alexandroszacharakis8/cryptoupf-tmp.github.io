@@ -149,8 +149,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="2.1" data-path="randomness-in-cryptography.html"><a href="randomness-in-cryptography.html#one-time-pad"><i class="fa fa-check"></i><b>2.1</b> One-time pad</a></li>
 <li class="chapter" data-level="2.2" data-path="randomness-in-cryptography.html"><a href="randomness-in-cryptography.html#sec:prngs"><i class="fa fa-check"></i><b>2.2</b> Pseudorandom generators</a></li>
-<li class="chapter" data-level="2.3" data-path="randomness-in-cryptography.html"><a href="randomness-in-cryptography.html#sec:examples"><i class="fa fa-check"></i><b>2.3</b> Linear feedback shift registers</a></li>
-<li class="chapter" data-level="2.4" data-path="randomness-in-cryptography.html"><a href="randomness-in-cryptography.html#true-randomness"><i class="fa fa-check"></i><b>2.4</b> True randomness</a></li>
+<li class="chapter" data-level="2.3" data-path="randomness-in-cryptography.html"><a href="randomness-in-cryptography.html#true-randomness"><i class="fa fa-check"></i><b>2.3</b> True randomness</a></li>
 <li class="chapter" data-level="" data-path="randomness-in-cryptography.html"><a href="randomness-in-cryptography.html#solved-exercises-1"><i class="fa fa-check"></i>Solved exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="block-ciphers.html"><a href="block-ciphers.html"><i class="fa fa-check"></i><b>3</b> Block ciphers</a>
@@ -665,78 +664,87 @@ above, is also a PRNG.</em></p>
 </div>
 <p>We have already seen some bad PRNGs, so what about the good ones?
 Although there exist some proposals of PRNGs that are believed to be
-secure and are built “from scratch”, what happens in practice is that,
+secure and are built “from scratch” (for example <a href="https://en.wikipedia.org/wiki/Salsa20#ChaCha_variant">Salsa20 and ChaCha20</a>), what happens in practice is that,
 when one wants a PRNG, it is common to build it from a block cipher,
 which is a topic that we will cover later in the course, so we delay the
-examples of cryptographic PRNGs until then. For completeness, we next look at a function that is enough for most applications of pseudorandom generation, but is not secure for
-cryptographic use.</p>
+examples of cryptographic PRNGs until then.</p>
+<!-- For completeness, we next look at a function that is enough for most applications of pseudorandom generation, but is not secure for -->
+<!-- cryptographic use. -->
+<!---->
+<!-- ## Linear feedback shift registers {#sec:examples} -->
+<!---->
+<!-- A *linear feedback shift register* is a type of "stretching function" -->
+<!-- that produces an output that looks quite random, and it passes some -->
+<!-- statistical tests, although it is still weak from a cryptographic point -->
+<!-- of view. We will start with a particular example. Assume that we have a -->
+<!-- seed $k$, written as a bitstring ${\mathsf{k}}=k_1k_2k_3$. The linear -->
+<!-- feedback shift register recursively produces each new element of the key -->
+<!-- according to the formula: $$k_{i+3}=k_{i+1}\oplus k_i.$$ For example, if -->
+<!-- the seed is $011$, the key stream will be -->
+<!-- $$0111001\quad 0111001\quad 0111001\quad 0111001\quad 0111001 \quad \dots$$ -->
+<!-- We included the spaces to emphasize the fact that, after a while, the -->
+<!-- output seems to repeat. This is not something specific to this example, -->
+<!-- but actually happens to any linear feedback shift register. -->
+<!---->
+<!-- Indeed, let us define a general *linear feedback shift register (LFSR) -->
+<!-- of length $\ell$*. It starts with a seed ${\mathsf{k}}$, expressed as a -->
+<!-- bitstring $${\mathsf{k}}=k_1k_2\dots k_\ell,$$ and derives each new -->
+<!-- element of the key stream according to the following: for $$i>\ell$$: -->
+<!-- $$k_{i}=p_{1}k_{i-1}\oplus \dots \oplus p_\ell k_{i-\ell},$$ for some -->
+<!-- coefficients $p_j\in\{0,1\}$, for $j=1,\dots,\ell$. -->
+<!---->
+<!-- ::: {.proposition} -->
+<!-- *The output of an LFSR of length $\ell$ repeats -->
+<!-- periodically, with a period of at most $2^{\ell}-1$.* -->
+<!-- ::: -->
+<!---->
+<!-- Note the "at most" in the statement. For some choices of the -->
+<!-- coefficients $p_j$, the period could be much shorter. However, for -->
+<!-- well-chosen coefficients, we can meet the bound, thus obtaining a period -->
+<!-- that is exponential in the length of the initial key. The output of a -->
+<!-- well-chosen LFSR has some good statistical properties. In particular, -->
+<!-- the output looks "random enough" for most applications. However, there -->
+<!-- are attacks that allow an adversary to distinguish the output from -->
+<!-- uniformly random, and thus LFSRs are not suited for cryptography. -->
+<!---->
+<!-- Still, a clever combination of a few LFSRs, with a couple of extra -->
+<!-- details, seems to be enough to realize the stream cipher Trivium, which, -->
+<!-- to this date, is believed to be secure.[^9] -->
+<!---->
+<!-- Below is a direct implementation of an LFSR. You can try different sets of feedback coefficients, and see how this impacts the period of the key stream.  -->
+<!---->
+<!-- ```{python, eval=FALSE} -->
+<!-- # Define the XOR operation: -->
+<!-- def xor(a,b): -->
+<!--     return mod(int(a)+int(b),2) -->
+<!---->
+<!-- # Set a vector of feedback coefficients [p_1, ... , p_n] -->
+<!-- feedback_coeffs = [1, 1, 0, 0, 0, 0, 0, 0] -->
+<!-- seed_length = len(feedback_coeffs) -->
+<!---->
+<!-- # Sample a uniformly random seed of the same length. -->
+<!-- seed = list(random_vector(GF(2),seed_length)) -->
+<!-- print(seed) -->
+<!---->
+<!-- # Choose the length of the required key stream -->
+<!-- k = 16 -->
+<!---->
+<!-- # Run the LFSR -->
+<!-- key_stream=seed -->
+<!-- for i in range(seed_length,seed_length+k): -->
+<!--     key_stream_temp=0 -->
+<!--     for j in range(seed_length): -->
+<!--         key_stream_temp = xor(key_stream_temp,(feedback_coeffs[j]*key_stream[i-j-1])) -->
+<!--     key_stream.append(key_stream_temp) -->
+<!-- print(key_stream) -->
+<!-- ``` -->
 </div>
-<div id="sec:examples" class="section level2 hasAnchor" number="2.3">
-<h2><span class="header-section-number">2.3</span> Linear feedback shift registers<a href="randomness-in-cryptography.html#sec:examples" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>A <em>linear feedback shift register</em> is a type of “stretching function”
-that produces an output that looks quite random, and it passes some
-statistical tests, although it is still weak from a cryptographic point
-of view. We will start with a particular example. Assume that we have a
-seed <span class="math inline">\(k\)</span>, written as a bitstring <span class="math inline">\({\mathsf{k}}=k_1k_2k_3\)</span>. The linear
-feedback shift register recursively produces each new element of the key
-according to the formula: <span class="math display">\[k_{i+3}=k_{i+1}\oplus k_i.\]</span> For example, if
-the seed is <span class="math inline">\(011\)</span>, the key stream will be
-<span class="math display">\[0111001\quad 0111001\quad 0111001\quad 0111001\quad 0111001 \quad \dots\]</span>
-We included the spaces to emphasize the fact that, after a while, the
-output seems to repeat. This is not something specific to this example,
-but actually happens to any linear feedback shift register.</p>
-<p>Indeed, let us define a general <em>linear feedback shift register (LFSR)
-of length <span class="math inline">\(\ell\)</span></em>. It starts with a seed <span class="math inline">\({\mathsf{k}}\)</span>, expressed as a
-bitstring <span class="math display">\[{\mathsf{k}}=k_1k_2\dots k_\ell,\]</span> and derives each new
-element of the key stream according to the following: for <span class="math display">\[i&gt;\ell\]</span>:
-<span class="math display">\[k_{i}=p_{1}k_{i-1}\oplus \dots \oplus p_\ell k_{i-\ell},\]</span> for some
-coefficients <span class="math inline">\(p_j\in\{0,1\}\)</span>, for <span class="math inline">\(j=1,\dots,\ell\)</span>.</p>
-<div class="proposition">
-<p><span id="prp:unlabeled-div-23" class="proposition"><strong>Proposition 2.5  </strong></span><em>The output of an LFSR of length <span class="math inline">\(\ell\)</span> repeats
-periodically, with a period of at most <span class="math inline">\(2^{\ell}-1\)</span>.</em></p>
-</div>
-<p>Note the “at most” in the statement. For some choices of the
-coefficients <span class="math inline">\(p_j\)</span>, the period could be much shorter. However, for
-well-chosen coefficients, we can meet the bound, thus obtaining a period
-that is exponential in the length of the initial key. The output of a
-well-chosen LFSR has some good statistical properties. In particular,
-the output looks “random enough” for most applications. However, there
-are attacks that allow an adversary to distinguish the output from
-uniformly random, and thus LFSRs are not suited for cryptography.</p>
-<p>Still, a clever combination of a few LFSRs, with a couple of extra
-details, seems to be enough to realize the stream cipher Trivium, which,
-to this date, is believed to be secure.<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a></p>
-<p>Below is a direct implementation of an LFSR. You can try different sets of feedback coefficients, and see how this impacts the period of the key stream.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="randomness-in-cryptography.html#cb3-1" tabindex="-1"></a><span class="co"># Define the XOR operation:</span></span>
-<span id="cb3-2"><a href="randomness-in-cryptography.html#cb3-2" tabindex="-1"></a><span class="kw">def</span> xor(a,b):</span>
-<span id="cb3-3"><a href="randomness-in-cryptography.html#cb3-3" tabindex="-1"></a>    <span class="cf">return</span> mod(<span class="bu">int</span>(a)<span class="op">+</span><span class="bu">int</span>(b),<span class="dv">2</span>)</span>
-<span id="cb3-4"><a href="randomness-in-cryptography.html#cb3-4" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="randomness-in-cryptography.html#cb3-5" tabindex="-1"></a><span class="co"># Set a vector of feedback coefficients [p_1, ... , p_n]</span></span>
-<span id="cb3-6"><a href="randomness-in-cryptography.html#cb3-6" tabindex="-1"></a>feedback_coeffs <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>]</span>
-<span id="cb3-7"><a href="randomness-in-cryptography.html#cb3-7" tabindex="-1"></a>seed_length <span class="op">=</span> <span class="bu">len</span>(feedback_coeffs)</span>
-<span id="cb3-8"><a href="randomness-in-cryptography.html#cb3-8" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="randomness-in-cryptography.html#cb3-9" tabindex="-1"></a><span class="co"># Sample a uniformly random seed of the same length.</span></span>
-<span id="cb3-10"><a href="randomness-in-cryptography.html#cb3-10" tabindex="-1"></a>seed <span class="op">=</span> <span class="bu">list</span>(random_vector(GF(<span class="dv">2</span>),seed_length))</span>
-<span id="cb3-11"><a href="randomness-in-cryptography.html#cb3-11" tabindex="-1"></a><span class="bu">print</span>(seed)</span>
-<span id="cb3-12"><a href="randomness-in-cryptography.html#cb3-12" tabindex="-1"></a></span>
-<span id="cb3-13"><a href="randomness-in-cryptography.html#cb3-13" tabindex="-1"></a><span class="co"># Choose the length of the required key stream</span></span>
-<span id="cb3-14"><a href="randomness-in-cryptography.html#cb3-14" tabindex="-1"></a>k <span class="op">=</span> <span class="dv">16</span></span>
-<span id="cb3-15"><a href="randomness-in-cryptography.html#cb3-15" tabindex="-1"></a></span>
-<span id="cb3-16"><a href="randomness-in-cryptography.html#cb3-16" tabindex="-1"></a><span class="co"># Run the LFSR</span></span>
-<span id="cb3-17"><a href="randomness-in-cryptography.html#cb3-17" tabindex="-1"></a>key_stream<span class="op">=</span>seed</span>
-<span id="cb3-18"><a href="randomness-in-cryptography.html#cb3-18" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(seed_length,seed_length<span class="op">+</span>k):</span>
-<span id="cb3-19"><a href="randomness-in-cryptography.html#cb3-19" tabindex="-1"></a>    key_stream_temp<span class="op">=</span><span class="dv">0</span></span>
-<span id="cb3-20"><a href="randomness-in-cryptography.html#cb3-20" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(seed_length):</span>
-<span id="cb3-21"><a href="randomness-in-cryptography.html#cb3-21" tabindex="-1"></a>        key_stream_temp <span class="op">=</span> xor(key_stream_temp,(feedback_coeffs[j]<span class="op">*</span>key_stream[i<span class="op">-</span>j<span class="op">-</span><span class="dv">1</span>]))</span>
-<span id="cb3-22"><a href="randomness-in-cryptography.html#cb3-22" tabindex="-1"></a>    key_stream.append(key_stream_temp)</span>
-<span id="cb3-23"><a href="randomness-in-cryptography.html#cb3-23" tabindex="-1"></a><span class="bu">print</span>(key_stream)</span></code></pre></div>
-</div>
-<div id="true-randomness" class="section level2 hasAnchor" number="2.4">
-<h2><span class="header-section-number">2.4</span> True randomness<a href="randomness-in-cryptography.html#true-randomness" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="true-randomness" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> True randomness<a href="randomness-in-cryptography.html#true-randomness" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We have dealt with the problem of stretching a tiny bit of randomness
 into something usable. But where does this initial randomness come from?
 It cannot really come from our computers, since these are deterministic,
-so the answer lies out in the physical world.<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a> The general idea is to
+so the answer lies out in the physical world.<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a> The general idea is to
 look for unpredictable processes from which to extract randomness. Some
 examples are radioactive decay, cosmic radiation, hardware processes
 like the least significant bit of the timestamp of a keystroke.</p>
@@ -750,16 +758,16 @@ them.</p>
 <div id="solved-exercises-1" class="section level2 unnumbered hasAnchor">
 <h2>Solved exercises<a href="randomness-in-cryptography.html#solved-exercises-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="exercise">
-<p><span id="exr:unlabeled-div-24" class="exercise"><strong>Exercise 2.4  </strong></span></p>
+<p><span id="exr:unlabeled-div-23" class="exercise"><strong>Exercise 2.4  </strong></span></p>
 <ol style="list-style-type: decimal">
 <li><p><em>Consider someone uses OTP to encrypt a single bit. They make a mistake and use the same key to encrypt two bits. You observe the ciphertexts 1 and 0. What can you say about the two messages?</em></p></li>
 <li><p><em>Assume you intercept a ciphertext <span class="math inline">\(\mathbf{c}\)</span> produced by OTP. You know that this message corresponds to a known message <span class="math inline">\(\mathbf{m}\)</span> (for example you know that the first message of Bob is “hello there!”). You now receive a second ciphertext <span class="math inline">\(\mathbf{c}&#39;\)</span> encrypted using the same key (this should have not happened!). How can you retrieve the second message?</em></p></li>
 </ol>
 </div>
 <div class="solution">
-<p><span id="unlabeled-div-25" class="solution"><em>Solution</em>. </span></p>
+<p><span id="unlabeled-div-24" class="solution"><em>Solution</em>. </span></p>
 <ol style="list-style-type: decimal">
-<li><p>Let <span class="math inline">\(k\)</span> be the common key used <span class="math inline">\(m_1 \oplus k = 0\)</span> and <span class="math inline">\(m_2\oplus k_2=1\)</span>. Applying <span class="math inline">\(\oplus k\)</span> in both sides of equation 1, we get<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a>
+<li><p>Let <span class="math inline">\(k\)</span> be the common key used <span class="math inline">\(m_1 \oplus k = 0\)</span> and <span class="math inline">\(m_2\oplus k_2=1\)</span>. Applying <span class="math inline">\(\oplus k\)</span> in both sides of equation 1, we get<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a>
 <span class="math display">\[ m_1 \oplus k \oplus k=  0 \oplus k \]</span>
 Noting that <span class="math inline">\(k\oplus k = 0\)</span> and <span class="math inline">\(k\oplus 0 = k\)</span> we get that <span class="math inline">\(k = m_1\)</span>. Replacing this in the second equation we get
 <span class="math inline">\(m_2\oplus m_1 = 1\)</span>. This means that the messages <span class="math inline">\(m_1, m_2\)</span> are different.</p></li>
@@ -771,7 +779,7 @@ Therefore, xor-ing the message with the ciphertext gives us the full key <span c
 </ol>
 </div>
 <div class="exercise">
-<p><span id="exr:unlabeled-div-26" class="exercise"><strong>Exercise 2.5  </strong></span><em>Suppose you want to encrypt messages over the English alphabet. To do this you use a substitution cipher. Such a cipher works as follows: the key consists of a random permutation
+<p><span id="exr:unlabeled-div-25" class="exercise"><strong>Exercise 2.5  </strong></span><em>Suppose you want to encrypt messages over the English alphabet. To do this you use a substitution cipher. Such a cipher works as follows: the key consists of a random permutation
 <span class="math inline">\(\pi\)</span> of the alphabet. To encrypt a message you apply the permutation on each letter and to decrypt you apply the inverse permutation. For example, if the permutation defines</em>
 <span class="math display">\[
 \pi(c) = q,\ \pi(d) = l,\ \pi(e) = a,\ \pi(o) = y,\ \ldots
@@ -787,7 +795,7 @@ Therefore, xor-ing the message with the ciphertext gives us the full key <span c
 </ol>
 </div>
 <div class="solution">
-<p><span id="unlabeled-div-27" class="solution"><em>Solution</em>. </span></p>
+<p><span id="unlabeled-div-26" class="solution"><em>Solution</em>. </span></p>
 <ol style="list-style-type: decimal">
 <li><p>Assume you know that a super secret party starts at either “five” or “nine”. You intercept a message that corresponds to “partyatfive” or “partyatnine”. With a substitution cipher,
 <strong>same letters always maps to the same cryptogram</strong>. Noting that “nine” has the first and third letter the same while five does not, the intercepted ciphertext will look like</p>
@@ -815,17 +823,17 @@ which concludes the proof.</p></li>
 </ol>
 </div>
 <div class="exercise">
-<p><span id="exr:unlabeled-div-28" class="exercise"><strong>Exercise 2.6  </strong></span><em>Alice has found a map to a secret treasure and she prepares to go on a quest to find it! She doesn’t care about the treasure but rather the adventure itself! If she manages to find it she wants her good friends Bob and Carol to keep it. However, she knows that Bob and Carol are greedy and they might rush to keep the treasure for themselves. How can she use cryptography to make sure she can communicate the location of the map in a way that neither Bob nor Carol alone can rush to the map?</em></p>
+<p><span id="exr:unlabeled-div-27" class="exercise"><strong>Exercise 2.6  </strong></span><em>Alice has found a map to a secret treasure and she prepares to go on a quest to find it! She doesn’t care about the treasure but rather the adventure itself! If she manages to find it she wants her good friends Bob and Carol to keep it. However, she knows that Bob and Carol are greedy and they might rush to keep the treasure for themselves. How can she use cryptography to make sure she can communicate the location of the map in a way that neither Bob nor Carol alone can rush to the map?</em></p>
 </div>
 <div class="solution">
-<p><span id="unlabeled-div-29" class="solution"><em>Solution</em>. </span>Before she leaves, Alice picks two one time pad keys <span class="math inline">\(\mathsf{k}_B, \mathsf{k}_C\)</span> that are long enough to encrypt coordinates. She gives the first to Bob and the second to Carol. If she finds the treasure
+<p><span id="unlabeled-div-28" class="solution"><em>Solution</em>. </span>Before she leaves, Alice picks two one time pad keys <span class="math inline">\(\mathsf{k}_B, \mathsf{k}_C\)</span> that are long enough to encrypt coordinates. She gives the first to Bob and the second to Carol. If she finds the treasure
 she encrypts the coordinates with the key <span class="math inline">\(\mathsf{k}=\mathsf{k}_B\oplus \mathsf{k}_C\)</span>, that is she computes <span class="math inline">\(\mathsf{c} = \mathsf{m}\oplus \mathsf{k}\)</span>. She then sends the ciphertext
 to both (or simply posts it online). Together, Bob and Carol can compute the one-time pad key <span class="math inline">\(\mathsf{k}\)</span> and learn the coordinates. Could one of them learn something on its own? The answer is no.</p>
 <p>To see this, note that that <span class="math inline">\(\mathsf{k_B}=\mathsf{k}\oplus \mathsf{k}_C\)</span>, so the key part that Bob has is a one time pad encryption of the key <span class="math inline">\(\mathsf{k}\)</span> that can only be decrypted by the key that Carol has. This means that Bob alone has <em>no information</em> about the key <span class="math inline">\(\mathsf{k}\)</span> and therefore no information about the sent message <span class="math inline">\(\mathsf{m}\)</span> when he only sees the ciphertext <span class="math inline">\(\mathsf{c}\)</span>. Similarly, we can write <span class="math inline">\(\mathsf{k_C}=\mathsf{k}\oplus \mathsf{k}_B\)</span> and make the same argument for Carol.</p>
 <p>Therefore, their only hope of success is to collaborate to learn the key <span class="math inline">\(\mathsf{k}\)</span> and use it to decrypt <span class="math inline">\(\mathsf{c}\)</span>.</p>
 </div>
 <div class="exercise">
-<p><span id="exr:unlabeled-div-30" class="exercise"><strong>Exercise 2.7  </strong></span><em>Alice loves OTP because it has perfect secrecy. But she does not want -understandably- to use a different key for each message. She knows she cannot use the same key, but she comes up with the following idea: when she sends the <span class="math inline">\(i\)</span>-th ciphertext
+<p><span id="exr:unlabeled-div-29" class="exercise"><strong>Exercise 2.7  </strong></span><em>Alice loves OTP because it has perfect secrecy. But she does not want -understandably- to use a different key for each message. She knows she cannot use the same key, but she comes up with the following idea: when she sends the <span class="math inline">\(i\)</span>-th ciphertext
 <span class="math inline">\(\mathbf{c}_i = \mathbf{m}_i \oplus \mathbf{k}_i\)</span>, she will use the <span class="math inline">\(i\)</span>-th message as the next key, that is, she will set <span class="math inline">\(\mathbf{k}_{i+1} = \mathbf{m}_i\)</span> and she will encrypt
 <span class="math inline">\(\mathbf{m}_{i+1}\)</span> as <span class="math inline">\(\mathbf{c}_{i+1} =  \mathbf{m}_{i+1} \oplus \mathbf{k}_{i+1} = \mathbf{m}_{i+1} \oplus \mathbf{m}_i\)</span>. She claims that since OTP is perfectly secret, no information is leaked about <span class="math inline">\(\mathbf{m}_i\)</span> and therefore it is like a fresh key. </em></p>
 <ol style="list-style-type: decimal">
@@ -834,7 +842,7 @@ to both (or simply posts it online). Together, Bob and Carol can compute the one
 </ol>
 </div>
 <div class="solution">
-<p><span id="unlabeled-div-31" class="solution"><em>Solution</em>. </span></p>
+<p><span id="unlabeled-div-30" class="solution"><em>Solution</em>. </span></p>
 <ol style="list-style-type: decimal">
 <li><p>Consider the <span class="math inline">\((i+1)\)</span>-th ciphertext. They will be computed as
 <span class="math display">\[
@@ -922,7 +930,8 @@ ciphertexts and knows a single message can decrypt all other messages, deeming t
 <!---->
 <!-- ::: -->
 <div class="exercise">
-<p><span id="exr:unlabeled-div-32" class="exercise"><strong>Exercise 2.8  </strong></span>Let <span class="math inline">\(G: \{0,1\}^{\ell} \rightarrow \{0,1\}^{2\ell}\)</span> be a pseudorandom generator. You do the following experiment: flip a coin and if it is heads you are given a value
+<p><span id="exr:unlabeled-div-31" class="exercise"><strong>Exercise 2.8  </strong></span><strong>(*)</strong></p>
+<p>Let <span class="math inline">\(G: \{0,1\}^{\ell} \rightarrow \{0,1\}^{2\ell}\)</span> be a pseudorandom generator. You do the following experiment: flip a coin and if it is heads you are given a value
 <span class="math inline">\(\mathsf{k} = G(s)\)</span> for a random <span class="math inline">\(s\in\{0,1\}^{\ell}\)</span>. If it is tails you are given a
 random <span class="math inline">\(\mathsf{k}\in\{0,1\}^{2\ell}\)</span>.</p>
 <ol style="list-style-type: decimal">
@@ -932,7 +941,7 @@ random <span class="math inline">\(\mathsf{k}\in\{0,1\}^{2\ell}\)</span>.</p>
 </ol>
 </div>
 <div class="solution">
-<p><span id="unlabeled-div-33" class="solution"><em>Solution</em>. </span></p>
+<p><span id="unlabeled-div-32" class="solution"><em>Solution</em>. </span></p>
 <ol style="list-style-type: decimal">
 <li><p>The algorithm does the following: for all <span class="math inline">\(s\in\{0,1\}^\ell\)</span>, it computes <span class="math inline">\(G(s)\)</span> and saves the result in a (big) table <span class="math inline">\(T\)</span>. Then it receives the value <span class="math inline">\(\mathsf{k}\)</span> and it outputs “heads” if <span class="math inline">\(\mathsf{k}\in T\)</span> and “tails” otherwise. The intuition why this is a good strategy is that there are <em>way</em> less elements in <span class="math inline">\(T\)</span> than in <span class="math inline">\(s\in\{0,1\}^{2\ell}\)</span>. Therefore, if the coin is tails, it is <em>very unlikely</em> that an element of <span class="math inline">\(T\)</span> was chosen.</p></li>
 <li><p>If the coin is “heads” the algorithm always succeeds. Indeed, the result is always in T and the algorithm always guesses “heads”. If it “tails”, the algorithm fails if some value <span class="math inline">\(\mathsf{k}\)</span> is chosen such that there exists an <span class="math inline">\(s\in\{0,1\}^\ell\)</span> for which <span class="math inline">\(G(s)=\mathsf{k}\)</span>. We need to count how many elements exists in this set and how many in total. The small set contains at most <span class="math inline">\(2^{\ell}\)</span> (each element <span class="math inline">\(s\)</span> can correspond to at most one) and the big one <span class="math inline">\(2^{2\ell}\)</span>. Thus, the probability that we sample an element of the small set is at most <span class="math inline">\(2^{\ell}/2^{2\ell} = 1/2^{\ell}\)</span>. This is the probability that our algorithm fails. It guesses correctly with probability at least <span class="math inline">\(1- 1/2^{\ell}\)</span>. More formally, denoting <span class="math inline">\(b\)</span> the coin and <span class="math inline">\(\mathcal{A}\)</span> our algorithm, we have:</p></li>
@@ -972,7 +981,7 @@ Observe that as <span class="math inline">\(\ell\)</span> grows, the algorithms 
 </ol>
 </div>
 <div class="remark">
-<p><span id="unlabeled-div-34" class="remark"><em>Remark</em>. </span>The exercise tells us on a more “philosophical” level that we cannot hope to have unconditionally good PRGs.
+<p><span id="unlabeled-div-33" class="remark"><em>Remark</em>. </span>The exercise tells us on a more “philosophical” level that we cannot hope to have unconditionally good PRGs.
 We need to base such construction on <em>computational assumptions</em>. This means that a
 pseudorandom string is always “distinguishable” from a random one but not <em>efficiently distinguishable</em>. Since we are able to only make efficient computations, the pseudorandom string “looks” random to us for all practical purposes.</p>
 </div>
@@ -988,12 +997,10 @@ associating to each letter its ASCII code in binary
 (<a href="https://en.wikipedia.org/wiki/ASCII" class="uri">https://en.wikipedia.org/wiki/ASCII</a>).<a href="randomness-in-cryptography.html#fnref7" class="footnote-back">↩︎</a></p></li>
 <li id="fn8"><p>We set the output length to be <span class="math inline">\(2\ell\)</span> for simplicity, but the
 idea could easily be adapted to any other output length.<a href="randomness-in-cryptography.html#fnref8" class="footnote-back">↩︎</a></p></li>
-<li id="fn9"><p>De Canniere, C., &amp; Preneel, B. (2008). Trivium. In <em>New stream
-cipher designs</em> (pp. 244-266). Springer, Berlin, Heidelberg.<a href="randomness-in-cryptography.html#fnref9" class="footnote-back">↩︎</a></p></li>
-<li id="fn10"><p>Assuming, of course, that the universe is not completely
-deterministic.<a href="randomness-in-cryptography.html#fnref10" class="footnote-back">↩︎</a></p></li>
-<li id="fn11"><p>Recall the XOR operation is associative, that is
-<span class="math inline">\((a\oplus b )\oplus c = a\oplus (b \oplus c)\)</span>. Therefore, we omit the parenthesis since the order of the operations do not matter.<a href="randomness-in-cryptography.html#fnref11" class="footnote-back">↩︎</a></p></li>
+<li id="fn9"><p>Assuming, of course, that the universe is not completely
+deterministic.<a href="randomness-in-cryptography.html#fnref9" class="footnote-back">↩︎</a></p></li>
+<li id="fn10"><p>Recall the XOR operation is associative, that is
+<span class="math inline">\((a\oplus b )\oplus c = a\oplus (b \oplus c)\)</span>. Therefore, we omit the parenthesis since the order of the operations do not matter.<a href="randomness-in-cryptography.html#fnref10" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

@@ -149,8 +149,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="2.1" data-path="randomness-in-cryptography.html"><a href="randomness-in-cryptography.html#one-time-pad"><i class="fa fa-check"></i><b>2.1</b> One-time pad</a></li>
 <li class="chapter" data-level="2.2" data-path="randomness-in-cryptography.html"><a href="randomness-in-cryptography.html#sec:prngs"><i class="fa fa-check"></i><b>2.2</b> Pseudorandom generators</a></li>
-<li class="chapter" data-level="2.3" data-path="randomness-in-cryptography.html"><a href="randomness-in-cryptography.html#sec:examples"><i class="fa fa-check"></i><b>2.3</b> Linear feedback shift registers</a></li>
-<li class="chapter" data-level="2.4" data-path="randomness-in-cryptography.html"><a href="randomness-in-cryptography.html#true-randomness"><i class="fa fa-check"></i><b>2.4</b> True randomness</a></li>
+<li class="chapter" data-level="2.3" data-path="randomness-in-cryptography.html"><a href="randomness-in-cryptography.html#true-randomness"><i class="fa fa-check"></i><b>2.3</b> True randomness</a></li>
 <li class="chapter" data-level="" data-path="randomness-in-cryptography.html"><a href="randomness-in-cryptography.html#solved-exercises-1"><i class="fa fa-check"></i>Solved exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="block-ciphers.html"><a href="block-ciphers.html"><i class="fa fa-check"></i><b>3</b> Block ciphers</a>
@@ -339,7 +338,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="front-page" class="section level1 unnumbered hasAnchor">
 <h1>Front page<a href="index.html#front-page" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p><em>Latest update: 24/02/2021.</em> <strong>TODO: update</strong></p>
+<p><em>Latest update: 02/01/2025.</em></p>
 <p>This page contains some useful information related to the course and the lecture notes. Note that there are some useful buttons above the text, in particular one to download the notes as a well-formatted PDF, for offline use.</p>
 <div id="prerequisites" class="section level4 unnumbered hasAnchor">
 <h4>Prerequisites<a href="index.html#prerequisites" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -347,15 +346,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="exercises" class="section level4 unnumbered hasAnchor">
 <h4>Exercises<a href="index.html#exercises" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p><strong>TODO: rename to examples in the main text</strong></p>
 <p>Besides the exercise lists that you will have for practices or seminars, these notes also have some exercises embedded into the explanations. These are mostly easy exercises, designed to be a sort of ‘sanity check’ before moving to the next topic. Hence, our recommendation is that you stop and think about every exercise you encounter in these notes, instead of rushing through the content. You might not always be able to write a full and formal solution, but make sure to get at least an intuition on each exercise before moving on.</p>
 <p>Furthermore, at the end of each chapter, there are relevant exercises with their solutions. These will both help you understand the concepts presented deeper as well as guide you to formally arguaing and presenting solutions to problems.</p>
+<p>Exercises marked with (*) are either more challenging or introduce interesting topics that are outside the scope of the course. You can safely skip them the first time you read the material. When you fairly understand a chapter’s content and the rest of the exercises, feel free to come back to these to either further deepen your understanding and/or take a glimpse into more advance and interesting topics related to the chapter.</p>
 </div>
 <div id="sagemath" class="section level4 unnumbered hasAnchor">
 <h4>SageMath<a href="index.html#sagemath" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p><strong>TODO: add Sage basics in the appendix</strong></p>
 <p><em>SageMath</em> (often called just <em>Sage</em>) is a powerful computer algebra system that we will use during the course to illustrate many concepts. It follows the Python syntax, which you will be familiar with, and comes equipped with many functions that are useful for cryptography.</p>
 <p>These notes will sometimes provide chunks of Sage code, so that you can play with some of the schemes that we will introduce. You are also encouraged to try and implement other schemes, or use Sage to double-check your solutions to exercises.</p>
+<p>You can find in Appendix <a href="sagemath-cookbook.html#sagemath-cookbook">E</a> a Sage cookboot giving short, self contained
+“recipies” for solving and experimenting with problems relevant to the course. You are encouraged to play with these recipies and try to combine them to handle more complex constructions.</p>
 <p>There are two ways that you can use Sage:</p>
 <ul>
 <li>Download it from <a href="https://www.sagemath.org/download.html" class="uri">https://www.sagemath.org/download.html</a>. This will allow you to run SageMath locally. It also comes packaged with a Jupyter-style notebook, for ease of use.</li>
@@ -376,6 +376,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="changelog" class="section level4 unnumbered hasAnchor">
 <h4>Changelog<a href="index.html#changelog" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ul>
+<li>02/02/2025. Exercises with their solutions added at the end of each chapter. Sage cookbook added at Appendix <a href="sagemath-cookbook.html#sagemath-cookbook">E</a>. Various corrections were made throughout the notes. AES128 diffusion and confusion experiments with Sage added. Remove Linear feedback shift registers subsection.</li>
 <li>24/02/2021. Sections <a href="digital-signatures.html#digital-signatures">9</a> and <a href="secret-sharing.html#secret-sharing">10</a> and Appendix <a href="polynomial-interpolation.html#polynomial-interpolation">C</a> added.</li>
 <li>12/02/2021. Section <a href="discrete-logarithm-cryptosystems.html#discrete-logarithm-cryptosystems">8</a> added. Some typos fixed in Sections <a href="algebraic-structures.html#algebraic-structures">6</a>, <a href="public-key-encryption.html#public-key-encryption">7</a> and Appendix <a href="primality-testing.html#primality-testing">B</a>.</li>
 <li>05/02/2021. Section <a href="public-key-encryption.html#public-key-encryption">7</a> and Appendix <a href="primality-testing.html#primality-testing">B</a> added. Minor fixes in Section <a href="algebraic-structures.html#algebraic-structures">6</a>. CRT moved to Section <a href="elementary-number-theory.html#elementary-number-theory">5</a>.</li>
@@ -387,7 +388,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>07/01/2021. Section <a href="elementary-number-theory.html#modular-arithmetic">5.3</a> and refreshers in Appendix <a href="refreshers.html#refreshers">D</a> added. Added code for LFSR. Some typos fixed in Sections <a href="introduction-to-security.html#introduction-to-security">1</a> and <a href="randomness-in-cryptography.html#randomness-in-cryptography">2</a>.</li>
 <li>04/01/2021. Sections <a href="introduction-to-security.html#introduction-to-security">1</a> and <a href="randomness-in-cryptography.html#randomness-in-cryptography">2</a> uploaded.</li>
 </ul>
-<p>Notes written by Javier Silva, using <a href="https://bookdown.org/">Bookdown</a> and <a href="https://pandoc.org/">pandoc</a>. <strong>TODO: add credits for myself, Vanesa and Carla and connect with the UPF course</strong></p>
+<p>The notes are based on and inteded to accompany the UPF course Cryptography and Security as tought by Vanesa Daza and Carla Ràfols. First iteration of the notes were written by Javier Silva, using <a href="https://bookdown.org/">Bookdown</a> and <a href="https://pandoc.org/">pandoc</a>. A second iteration along with solved exercises and the SageMath cookbook was written by Alexandros Zacharakis.</p>
 
 
 </div>

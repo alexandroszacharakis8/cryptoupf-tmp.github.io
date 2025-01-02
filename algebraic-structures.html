@@ -149,8 +149,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="2.1" data-path="randomness-in-cryptography.html"><a href="randomness-in-cryptography.html#one-time-pad"><i class="fa fa-check"></i><b>2.1</b> One-time pad</a></li>
 <li class="chapter" data-level="2.2" data-path="randomness-in-cryptography.html"><a href="randomness-in-cryptography.html#sec:prngs"><i class="fa fa-check"></i><b>2.2</b> Pseudorandom generators</a></li>
-<li class="chapter" data-level="2.3" data-path="randomness-in-cryptography.html"><a href="randomness-in-cryptography.html#sec:examples"><i class="fa fa-check"></i><b>2.3</b> Linear feedback shift registers</a></li>
-<li class="chapter" data-level="2.4" data-path="randomness-in-cryptography.html"><a href="randomness-in-cryptography.html#true-randomness"><i class="fa fa-check"></i><b>2.4</b> True randomness</a></li>
+<li class="chapter" data-level="2.3" data-path="randomness-in-cryptography.html"><a href="randomness-in-cryptography.html#true-randomness"><i class="fa fa-check"></i><b>2.3</b> True randomness</a></li>
 <li class="chapter" data-level="" data-path="randomness-in-cryptography.html"><a href="randomness-in-cryptography.html#solved-exercises-1"><i class="fa fa-check"></i>Solved exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="block-ciphers.html"><a href="block-ciphers.html"><i class="fa fa-check"></i><b>3</b> Block ciphers</a>
@@ -351,7 +350,7 @@ section, we will learn about two of these:</p>
 <p>Groups are the simplest algebraic structure that we will study, since
 they only have one operation.</p>
 <div class="definition">
-<p><span id="def:unlabeled-div-83" class="definition"><strong>Definition 6.1  </strong></span><em>A</em> group <em>is a pair <span class="math inline">\((\mathbb{G},\circ)\)</span>, where
+<p><span id="def:unlabeled-div-82" class="definition"><strong>Definition 6.1  </strong></span><em>A</em> group <em>is a pair <span class="math inline">\((\mathbb{G},\circ)\)</span>, where
 <span class="math inline">\(\mathbb{G}\)</span> is a set and <span class="math inline">\(\circ\)</span> is an operation on <span class="math inline">\(\mathbb{G}\)</span>, that
 is, a function <span class="math display">\[\begin{aligned}
         \circ : \phantom{a} &amp; \mathbb{G}\times \mathbb{G}&amp; \rightarrow &amp; \phantom{a}\mathbb{G}\\
@@ -408,7 +407,7 @@ a group.</p></li>
 <p>Moreover, since the operations are commutative, all of these groups are
 commutative.</p>
 <div class="exercise">
-<p><span id="exr:unlabeled-div-84" class="exercise"><strong>Exercise 6.1  </strong></span><em>Explain why none of the following is a group:</em></p>
+<p><span id="exr:unlabeled-div-83" class="exercise"><strong>Exercise 6.1  </strong></span><em>Explain why none of the following is a group:</em></p>
 <ol style="list-style-type: decimal">
 <li><p><em><span class="math inline">\((\mathbb{Z},\cdot)\)</span>, where <span class="math inline">\(\cdot\)</span> is integer multiplication.</em></p></li>
 <li><p><em><span class="math inline">\((\mathbb{Z}_n,\cdot)\)</span>, where <span class="math inline">\(\cdot\)</span> is multiplication modulo <span class="math inline">\(n\)</span>,
@@ -423,7 +422,7 @@ multiplication by <span class="math inline">\(x^{-1}\)</span>. Applying the oper
 same element <span class="math inline">\(x\)</span> is represented by <span class="math inline">\(nx\)</span> in additive notation, and by
 <span class="math inline">\(x^n\)</span> in multiplicative notation. Even though not all group operations
 are addition or multiplication, it is common to adopt their notation for
-a generic group operation.<a href="#fn24" class="footnote-ref" id="fnref24"><sup>24</sup></a> In these notes, we will often use
+a generic group operation.<a href="#fn23" class="footnote-ref" id="fnref23"><sup>23</sup></a> In these notes, we will often use
 multiplicative notation for generic groups. That is, we denote the
 identity element by <span class="math inline">\(1\)</span>, the inverse of <span class="math inline">\(x\)</span> by <span class="math inline">\(x^{-1}\)</span>, and the
 operation of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> by <span class="math inline">\(x\cdot y\)</span> or simply <span class="math inline">\(xy\)</span>.</p>
@@ -435,7 +434,7 @@ all <span class="math inline">\(n\in\mathbb{N}\)</span>. That is, a single eleme
 elements of a group. This leads us to the concept of <em>cyclic groups</em>,
 which are those that contain only the powers of a single element.</p>
 <div class="definition">
-<p><span id="def:unlabeled-div-85" class="definition"><strong>Definition 6.2  </strong></span><em>A group <span class="math inline">\(\mathbb{G}\)</span> is said to be</em> cyclic <em>if there
+<p><span id="def:unlabeled-div-84" class="definition"><strong>Definition 6.2  </strong></span><em>A group <span class="math inline">\(\mathbb{G}\)</span> is said to be</em> cyclic <em>if there
 exists <span class="math inline">\(g\in \mathbb{G}\)</span> such that
 <span class="math display">\[\mathbb{G}=\{g^n\mid n\in\mathbb{Z}_{\geq 0}\}.\]</span> This group is also
 denoted by <span class="math inline">\(\langle g \rangle\)</span>, and is called the group</em> generated <em>(or</em> spanned<em>) by <span class="math inline">\(g\)</span>, and <span class="math inline">\(g\)</span> is called a</em> generator <em>of <span class="math inline">\(\mathbb{G}\)</span>. Note
@@ -468,19 +467,19 @@ informally mention that any cyclic group of finite order <span class="math inlin
 like the additive group <span class="math inline">\(\mathbb{Z}_n\)</span>, and any cyclic group of infinite
 order behaves like <span class="math inline">\(\mathbb{Z}\)</span>.</p>
 <div class="proposition">
-<p><span id="prp:unnamed-chunk-22" class="proposition"><strong>Proposition 6.1  </strong></span><em>For any <span class="math inline">\(n\in\mathbb{N}\)</span>, we have that
+<p><span id="prp:unnamed-chunk-23" class="proposition"><strong>Proposition 6.1  </strong></span><em>For any <span class="math inline">\(n\in\mathbb{N}\)</span>, we have that
 <span class="math inline">\((\mathbb{Z}_n,+)\)</span>, where <span class="math inline">\(+\)</span> is addition modulo <span class="math inline">\(n\)</span>, is a cyclic
 group.</em></p>
 </div>
 <div class="exercise">
-<p><span id="exr:unlabeled-div-86" class="exercise"><strong>Exercise 6.2  </strong></span><em>Decide whether the group
+<p><span id="exr:unlabeled-div-85" class="exercise"><strong>Exercise 6.2  </strong></span><em>Decide whether the group
 <span class="math inline">\(\mathbb{Z}_2\times\mathbb{Z}_3\)</span>, with component-wise modular addition,
 is a cyclic group.</em></p>
 </div>
 <p>Groups might contain smaller groups inside, that are consistent with the
 same operation.</p>
 <div class="definition">
-<p><span id="def:unlabeled-div-87" class="definition"><strong>Definition 6.3  </strong></span><em>Let <span class="math inline">\(\mathbb{G}\)</span> be a group. A</em> subgroup <span class="math inline">\(\mathbb{H}\)</span>
+<p><span id="def:unlabeled-div-86" class="definition"><strong>Definition 6.3  </strong></span><em>Let <span class="math inline">\(\mathbb{G}\)</span> be a group. A</em> subgroup <span class="math inline">\(\mathbb{H}\)</span>
 <em>of <span class="math inline">\(\mathbb{G}\)</span> is a subset of <span class="math inline">\(\mathbb{G}\)</span> that contains the identity
 element and such that <span class="math inline">\(\mathbb{H}\)</span> forms a group with the operation of <span class="math inline">\(\mathbb{G}\)</span> restricted to <span class="math inline">\(\mathbb{H}\)</span>. That is, for any <span class="math inline">\(x,y\in \mathbb{H}\)</span>, we have that <span class="math inline">\(x^{-1}\in\mathbb{H}\)</span> and</em> <span class="math inline">\(xy\in \mathbb{H}\)</span>.</p>
 </div>
@@ -488,7 +487,7 @@ element and such that <span class="math inline">\(\mathbb{H}\)</span> forms a gr
 since the addition of even numbers is even. It is easy to see that
 subgroups are groups too.</p>
 <div class="exercise">
-<p><span id="exr:unlabeled-div-88" class="exercise"><strong>Exercise 6.3  </strong></span><em>Decide which of these subsets are subgroups of
+<p><span id="exr:unlabeled-div-87" class="exercise"><strong>Exercise 6.3  </strong></span><em>Decide which of these subsets are subgroups of
 <span class="math inline">\((\mathbb{Z}_4,+)\)</span>:
 <span class="math display">\[\{0\},\quad\qquad\{0,2\},\quad\qquad\{1,3\},\quad\qquad\{0,1,3\}.\]</span></em></p>
 </div>
@@ -497,28 +496,28 @@ subgroups are groups too.</p>
 not be the whole <span class="math inline">\(\mathbb{G}\)</span>. This allows us to define the order of an
 element as follows.</p>
 <div class="definition">
-<p><span id="def:unlabeled-div-89" class="definition"><strong>Definition 6.4  </strong></span><em>Let <span class="math inline">\(\mathbb{G}\)</span> be a group, and <span class="math inline">\(x\in\mathbb{G}\)</span>.
+<p><span id="def:unlabeled-div-88" class="definition"><strong>Definition 6.4  </strong></span><em>Let <span class="math inline">\(\mathbb{G}\)</span> be a group, and <span class="math inline">\(x\in\mathbb{G}\)</span>.
 We define the</em> order <em>of <span class="math inline">\(x\)</span> as the order of <span class="math inline">\(\langle x\rangle\)</span>, and
 denote it by <span class="math inline">\(ord(x)\)</span>.</em></p>
 </div>
 <p>The following Sage code defines the additive group <span class="math inline">\((\mathbb{Z}_9,+)\)</span>,
 computes a generator, and then computes the order of each element, also
 explicitly providing the cycle that corresponds to that element.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="algebraic-structures.html#cb7-1" tabindex="-1"></a>  G <span class="op">=</span> AdditiveAbelianGroup([<span class="dv">9</span>])</span>
-<span id="cb7-2"><a href="algebraic-structures.html#cb7-2" tabindex="-1"></a>  g <span class="op">=</span> G.gens()[<span class="dv">0</span>]           <span class="co"># The [0] is necessary because, technically,</span></span>
-<span id="cb7-3"><a href="algebraic-structures.html#cb7-3" tabindex="-1"></a>                                <span class="co"># .gens() returns a list.</span></span>
-<span id="cb7-4"><a href="algebraic-structures.html#cb7-4" tabindex="-1"></a>  <span class="bu">print</span>(<span class="bu">str</span>(G)<span class="op">+</span><span class="st">&quot;, generator: &quot;</span><span class="op">+</span><span class="bu">str</span>(g))</span>
-<span id="cb7-5"><a href="algebraic-structures.html#cb7-5" tabindex="-1"></a>  <span class="cf">for</span> x <span class="kw">in</span> G:</span>
-<span id="cb7-6"><a href="algebraic-structures.html#cb7-6" tabindex="-1"></a>      <span class="bu">print</span>(<span class="st">&quot;x = &quot;</span><span class="op">+</span><span class="bu">str</span>(x)<span class="op">+</span><span class="st">&quot;, ord(x) = &quot;</span><span class="op">+</span><span class="bu">str</span>(x.order()))</span>
-<span id="cb7-7"><a href="algebraic-structures.html#cb7-7" tabindex="-1"></a>      <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(x.order()<span class="op">+</span><span class="dv">1</span>):</span>
-<span id="cb7-8"><a href="algebraic-structures.html#cb7-8" tabindex="-1"></a>          <span class="bu">print</span>(i<span class="op">*</span>x)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="algebraic-structures.html#cb8-1" tabindex="-1"></a>  G <span class="op">=</span> AdditiveAbelianGroup([<span class="dv">9</span>])</span>
+<span id="cb8-2"><a href="algebraic-structures.html#cb8-2" tabindex="-1"></a>  g <span class="op">=</span> G.gens()[<span class="dv">0</span>]           <span class="co"># The [0] is necessary because, technically,</span></span>
+<span id="cb8-3"><a href="algebraic-structures.html#cb8-3" tabindex="-1"></a>                                <span class="co"># .gens() returns a list.</span></span>
+<span id="cb8-4"><a href="algebraic-structures.html#cb8-4" tabindex="-1"></a>  <span class="bu">print</span>(<span class="bu">str</span>(G)<span class="op">+</span><span class="st">&quot;, generator: &quot;</span><span class="op">+</span><span class="bu">str</span>(g))</span>
+<span id="cb8-5"><a href="algebraic-structures.html#cb8-5" tabindex="-1"></a>  <span class="cf">for</span> x <span class="kw">in</span> G:</span>
+<span id="cb8-6"><a href="algebraic-structures.html#cb8-6" tabindex="-1"></a>      <span class="bu">print</span>(<span class="st">&quot;x = &quot;</span><span class="op">+</span><span class="bu">str</span>(x)<span class="op">+</span><span class="st">&quot;, ord(x) = &quot;</span><span class="op">+</span><span class="bu">str</span>(x.order()))</span>
+<span id="cb8-7"><a href="algebraic-structures.html#cb8-7" tabindex="-1"></a>      <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(x.order()<span class="op">+</span><span class="dv">1</span>):</span>
+<span id="cb8-8"><a href="algebraic-structures.html#cb8-8" tabindex="-1"></a>          <span class="bu">print</span>(i<span class="op">*</span>x)</span></code></pre></div>
 <p>If <span class="math inline">\(\mathbb{H}\)</span> is a subgroup of <span class="math inline">\(\mathbb{G}\)</span>, it is clear that the
 order of <span class="math inline">\(\mathbb{H}\)</span> will be smaller than the order of <span class="math inline">\(\mathbb{G}\)</span>,
 since the former is contained in the latter. But even more, it will
 necessarily be a divisor, which is something you may have observed after
 running the above code.</p>
 <div class="proposition">
-<p><span id="prp:unnamed-chunk-24" class="proposition"><strong>Proposition 6.2  (Lagrange's theorem) </strong></span><em>Let <span class="math inline">\(\mathbb{G}\)</span> be a finite
+<p><span id="prp:unnamed-chunk-25" class="proposition"><strong>Proposition 6.2  (Lagrange's theorem) </strong></span><em>Let <span class="math inline">\(\mathbb{G}\)</span> be a finite
 group.</em></p>
 <p><em>For any subgroup <span class="math inline">\(\mathbb{H}\)</span> of <span class="math inline">\(\mathbb{G}\)</span>,
 <span class="math inline">\(ord(\mathbb{H})\mid ord(\mathbb{G})\)</span>.</em></p>
@@ -531,13 +530,13 @@ finite order. Then, for any <span class="math inline">\(x\in \mathbb{G}\)</span>
 <span class="math display">\[x^{ord(\mathbb{G})}=1.\]</span></em></p>
 </div>
 <div class="exercise">
-<p><span id="exr:unlabeled-div-90" class="exercise"><strong>Exercise 6.4  </strong></span><em>Verify that Euler’s theorem holds for the group
+<p><span id="exr:unlabeled-div-89" class="exercise"><strong>Exercise 6.4  </strong></span><em>Verify that Euler’s theorem holds for the group
 <span class="math inline">\(\mathbb{Z}_7^*\)</span>, with the operation multiplication modulo <span class="math inline">\(7\)</span>.</em></p>
 </div>
 <p>The exercise can also be solved with Sage, using the following code.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="algebraic-structures.html#cb8-1" tabindex="-1"></a>G <span class="op">=</span> Integers(<span class="dv">7</span>).unit_group()    <span class="co"># Multiplicative group Z_7^*.</span></span>
-<span id="cb8-2"><a href="algebraic-structures.html#cb8-2" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> G:</span>
-<span id="cb8-3"><a href="algebraic-structures.html#cb8-3" tabindex="-1"></a>    <span class="bu">print</span>(x<span class="op">^</span>(G.order()))</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="algebraic-structures.html#cb9-1" tabindex="-1"></a>G <span class="op">=</span> Integers(<span class="dv">7</span>).unit_group()    <span class="co"># Multiplicative group Z_7^*.</span></span>
+<span id="cb9-2"><a href="algebraic-structures.html#cb9-2" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> G:</span>
+<span id="cb9-3"><a href="algebraic-structures.html#cb9-3" tabindex="-1"></a>    <span class="bu">print</span>(x<span class="op">^</span>(G.order()))</span></code></pre></div>
 <p>These propositions give us an easy way to check whether an element
 <span class="math inline">\(x\in\mathbb{G}\)</span> is a generator. Recall that the order of <span class="math inline">\(x\)</span> tells us
 how many elements there are in
@@ -565,7 +564,7 @@ only two candidates: <span class="math inline">\(x\)</span> and <span class="mat
 if <span class="math inline">\(x\neq 1\)</span>, necessarily <span class="math inline">\(x\)</span> is a generator. That is, we have proven the
 following result.</p>
 <div class="proposition">
-<p><span id="prp:unnamed-chunk-26" class="proposition"><strong>Proposition 6.4  </strong></span><em>Let <span class="math inline">\(\mathbb{G}\)</span> be a cyclic group of prime order.
+<p><span id="prp:unnamed-chunk-27" class="proposition"><strong>Proposition 6.4  </strong></span><em>Let <span class="math inline">\(\mathbb{G}\)</span> be a cyclic group of prime order.
 If <span class="math inline">\(g\in\mathbb{G}\)</span> is not the identity element, then <span class="math inline">\(g\)</span> generates
 <span class="math inline">\(\mathbb{G}\)</span>.</em></p>
 </div>
@@ -578,9 +577,9 @@ of the groups <span class="math inline">\(\mathbb{Z}_n\)</span> and <span class=
 modulo <span class="math inline">\(p\)</span>.</em></p>
 </div>
 <p>Moreover, a direct consequence of Euler’s theorem and the proposition
-above is known as <em>Fermat’s little theorem</em>.<a href="#fn25" class="footnote-ref" id="fnref25"><sup>25</sup></a></p>
+above is known as <em>Fermat’s little theorem</em>.<a href="#fn24" class="footnote-ref" id="fnref24"><sup>24</sup></a></p>
 <div class="proposition">
-<p><span id="prp:unnamed-chunk-27" class="proposition"><strong>Proposition 6.6  (Fermat's little theorem) </strong></span><em>Let <span class="math inline">\(p\)</span> be a prime
+<p><span id="prp:unnamed-chunk-28" class="proposition"><strong>Proposition 6.6  (Fermat's little theorem) </strong></span><em>Let <span class="math inline">\(p\)</span> be a prime
 number. Then, for any <span class="math inline">\(x\in\mathbb{Z}\)</span>, we have that
 <span class="math display">\[x^{p-1}\equiv1\pmod{p}.\]</span></em></p>
 </div>
@@ -589,9 +588,9 @@ number. Then, for any <span class="math inline">\(x\in\mathbb{Z}\)</span>, we ha
 <h2><span class="header-section-number">6.2</span> Finite fields<a href="algebraic-structures.html#finite-fields" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>A <em>field</em> is a more complex algebraic structure, since it is equipped
 with two operations, both of which work similarly to a group
-operation.<a href="#fn26" class="footnote-ref" id="fnref26"><sup>26</sup></a></p>
+operation.<a href="#fn25" class="footnote-ref" id="fnref25"><sup>25</sup></a></p>
 <div class="definition">
-<p><span id="def:unlabeled-div-91" class="definition"><strong>Definition 6.5  </strong></span><em>A</em> field <em>is a triple <span class="math inline">\((\mathbb{F},\circ,\ast)\)</span>,
+<p><span id="def:unlabeled-div-90" class="definition"><strong>Definition 6.5  </strong></span><em>A</em> field <em>is a triple <span class="math inline">\((\mathbb{F},\circ,\ast)\)</span>,
 where <span class="math inline">\(\mathbb{F}\)</span> is a set and <span class="math inline">\(\circ\)</span> and <span class="math inline">\(\ast\)</span> are operations on
 <span class="math inline">\(\mathbb{F}\)</span>, that is, functions <span class="math display">\[\begin{aligned}
         \circ : \phantom{a} &amp; \mathbb{F}\times \mathbb{F}&amp; \rightarrow &amp; \phantom{a}\mathbb{F}&amp; \qquad\qquad &amp; \ast :&amp; \mathbb{F}\times\mathbb{F}&amp; \rightarrow &amp; \mathbb{F}\\
@@ -692,24 +691,24 @@ and <span class="math inline">\(6\)</span>. Therefore, <span class="math inline"
 </ul>
 <p>In Sage, the following code can be used to check whether an element of
 <span class="math inline">\(\mathbb{Z}_n\)</span> has a multiplicative inverse.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="algebraic-structures.html#cb9-1" tabindex="-1"></a>R <span class="op">=</span> Integers(n)     <span class="co"># Z_n with addition and </span></span>
-<span id="cb9-2"><a href="algebraic-structures.html#cb9-2" tabindex="-1"></a>                    <span class="co"># multiplication modulo n.</span></span>
-<span id="cb9-3"><a href="algebraic-structures.html#cb9-3" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> R:</span>
-<span id="cb9-4"><a href="algebraic-structures.html#cb9-4" tabindex="-1"></a>    <span class="bu">print</span>(x,x.is_unit())</span></code></pre></div>
-<p>In this course we will be interested in <em>finite fields</em>,<a href="#fn27" class="footnote-ref" id="fnref27"><sup>27</sup></a> so what
+<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="algebraic-structures.html#cb10-1" tabindex="-1"></a>R <span class="op">=</span> Integers(n)     <span class="co"># Z_n with addition and </span></span>
+<span id="cb10-2"><a href="algebraic-structures.html#cb10-2" tabindex="-1"></a>                    <span class="co"># multiplication modulo n.</span></span>
+<span id="cb10-3"><a href="algebraic-structures.html#cb10-3" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> R:</span>
+<span id="cb10-4"><a href="algebraic-structures.html#cb10-4" tabindex="-1"></a>    <span class="bu">print</span>(x,x.is_unit())</span></code></pre></div>
+<p>In this course we will be interested in <em>finite fields</em>,<a href="#fn26" class="footnote-ref" id="fnref26"><sup>26</sup></a> so what
 are some examples of those? Could it be, for example, that
 <span class="math inline">\(\mathbb{Z}_n\)</span> is a field for some <span class="math inline">\(n\in\mathbb{N}\)</span>? We already know
 that this will not be true for all <span class="math inline">\(n\in\mathbb{N}\)</span>, since we saw that
 some elements of <span class="math inline">\(\mathbb{Z}_9\)</span> do not have an inverse.</p>
 <div class="proposition">
-<p><span id="prp:unnamed-chunk-29" class="proposition"><strong>Proposition 6.7  </strong></span><em>The <span class="math inline">\(\mathbb{Z}_n\)</span>, with addition and
+<p><span id="prp:unnamed-chunk-30" class="proposition"><strong>Proposition 6.7  </strong></span><em>The <span class="math inline">\(\mathbb{Z}_n\)</span>, with addition and
 multiplication modulo <span class="math inline">\(n\)</span>, is a field if and only if <span class="math inline">\(n\)</span> is a prime
 number.</em></p>
 </div>
 <p>The only finite fields that exist have a number of elements that is
 either a prime number or a power of a prime number.</p>
 <div class="proposition">
-<p><span id="prp:unnamed-chunk-30" class="proposition"><strong>Proposition 6.8  </strong></span><em>Let <span class="math inline">\(\mathbb{F}\)</span> be a finite field. Then
+<p><span id="prp:unnamed-chunk-31" class="proposition"><strong>Proposition 6.8  </strong></span><em>Let <span class="math inline">\(\mathbb{F}\)</span> be a finite field. Then
 <span class="math inline">\(\mathbb{F}\)</span> has <span class="math inline">\(p^k\)</span> elements, where <span class="math inline">\(p\)</span> is a prime number and
 <span class="math inline">\(k\in\mathbb{N}\)</span>. We denote such a finite field by <span class="math inline">\(\mathbb{F}_{p^k}\)</span>.
 If <span class="math inline">\(k=1\)</span>, the field is called a</em> prime field<em>, otherwise it is known as
@@ -750,7 +749,7 @@ analogous to what we did in <span class="math inline">\(\mathbb{F}_p=\mathbb{Z}_
 we reduced the result modulo a prime number <span class="math inline">\(p\)</span>. Now, we will reduce the
 result modulo a certain polynomial <span class="math inline">\(T(X)\)</span> of degree <span class="math inline">\(k\)</span>. This means that
 we compute the polynomial division of <span class="math inline">\(R(X)S(X)\)</span> by <span class="math inline">\(T(X)\)</span>, and keep the
-remainder, so that the result has degree at most <span class="math inline">\(k-1\)</span>.<a href="#fn28" class="footnote-ref" id="fnref28"><sup>28</sup></a> Since this
+remainder, so that the result has degree at most <span class="math inline">\(k-1\)</span>.<a href="#fn27" class="footnote-ref" id="fnref27"><sup>27</sup></a> Since this
 is analogous to the case of integers, we extend the notation
 <span class="math display">\[A(X)\bmod{T(X)}\]</span> to denote the remainder of the polynomial division
 <span class="math inline">\(A(X)\)</span> by <span class="math inline">\(T(X)\)</span>, and the notation <span class="math display">\[A(X)\equiv B(X)\pmod{T(X)}\]</span> to
@@ -770,7 +769,7 @@ analogue of a prime number in this sense of lack of factorization. This
 leads us to irreducible polynomials, although a formal proof of this
 statement is beyond the scope of this course.</p>
 <div class="proposition">
-<p><span id="prp:unnamed-chunk-31" class="proposition"><strong>Proposition 6.9  </strong></span><em>Let <span class="math inline">\(p\)</span> be a prime number and <span class="math inline">\(k\in\mathbb{N}\)</span>. Let
+<p><span id="prp:unnamed-chunk-32" class="proposition"><strong>Proposition 6.9  </strong></span><em>Let <span class="math inline">\(p\)</span> be a prime number and <span class="math inline">\(k\in\mathbb{N}\)</span>. Let
 <span class="math inline">\(T(X)\)</span> be an irreducible polynomial of degree <span class="math inline">\(k\)</span> with coefficients in
 <span class="math inline">\(\mathbb{F}_p\)</span>. The set of polynomials of degree at most <span class="math inline">\(k-1\)</span> and
 coefficients over <span class="math inline">\(\mathbb{F}_p\)</span>, together with the operations
@@ -785,13 +784,13 @@ the extended Euclidean algorithm for polynomials, similarly to the way
 it was used to invert integers modulo <span class="math inline">\(n\)</span>. We describe this algorithm
 below.</p>
 <div class="definition">
-<p><span id="def:unlabeled-div-92" class="definition"><strong>Definition 6.6  </strong></span><em>Given a polynomial
+<p><span id="def:unlabeled-div-91" class="definition"><strong>Definition 6.6  </strong></span><em>Given a polynomial
 <span class="math display">\[a_kX^k+a_{k-1}X^{k-1}+\dots+a_1X+a_0,\]</span> we define its</em> leading
 coefficient <em>as the coefficient of the highest-degree monomial, in this
 case <span class="math inline">\(a_k\)</span>. A polynomial with leading coefficient <span class="math inline">\(1\)</span> is called</em> monic.</p>
 </div>
 <div class="definition">
-<p><span id="def:unlabeled-div-93" class="definition"><strong>Definition 6.7  </strong></span><em>Given two polynomials <span class="math inline">\(A(X)\)</span> and <span class="math inline">\(B(X)\)</span>, we define
+<p><span id="def:unlabeled-div-92" class="definition"><strong>Definition 6.7  </strong></span><em>Given two polynomials <span class="math inline">\(A(X)\)</span> and <span class="math inline">\(B(X)\)</span>, we define
 their</em> greatest common divisor <em>as the highest-degree monic polynomial
 that divides both.</em></p>
 </div>
@@ -846,31 +845,31 @@ and the irreducible polynomial <span class="math inline">\(T(X)\)</span>, obtain
 <span class="math display">\[1\equiv A(X)U(X)\pmod{T(X)},\]</span> and we find that <span class="math inline">\(U(X)\)</span> is the inverse
 of <span class="math inline">\(A(X)\)</span> in <span class="math inline">\(\mathbb{F}_{p^k}\)</span>.</p>
 <p>We show to define and manipulate finite fields in Sage.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="algebraic-structures.html#cb10-1" tabindex="-1"></a><span class="co"># Finite field of size 3^5. The optional argument modulus=p </span></span>
-<span id="cb10-2"><a href="algebraic-structures.html#cb10-2" tabindex="-1"></a><span class="co"># allows to specify the irreducible polynomial p to be used.</span></span>
-<span id="cb10-3"><a href="algebraic-structures.html#cb10-3" tabindex="-1"></a>F <span class="op">=</span> GF(<span class="dv">3</span><span class="op">^</span><span class="dv">5</span>, <span class="st">&quot;X&quot;</span>)</span>
-<span id="cb10-4"><a href="algebraic-structures.html#cb10-4" tabindex="-1"></a>F</span>
-<span id="cb10-5"><a href="algebraic-structures.html#cb10-5" tabindex="-1"></a>        </span>
-<span id="cb10-6"><a href="algebraic-structures.html#cb10-6" tabindex="-1"></a><span class="co"># Get the polynomial p(X)=X into the field.</span></span>
-<span id="cb10-7"><a href="algebraic-structures.html#cb10-7" tabindex="-1"></a>X <span class="op">=</span> F(<span class="st">&quot;X&quot;</span>)</span>
-<span id="cb10-8"><a href="algebraic-structures.html#cb10-8" tabindex="-1"></a>        </span>
-<span id="cb10-9"><a href="algebraic-structures.html#cb10-9" tabindex="-1"></a><span class="co"># Show the irreducible polynomial being used.</span></span>
-<span id="cb10-10"><a href="algebraic-structures.html#cb10-10" tabindex="-1"></a>F.modulus()</span>
-<span id="cb10-11"><a href="algebraic-structures.html#cb10-11" tabindex="-1"></a>        </span>
-<span id="cb10-12"><a href="algebraic-structures.html#cb10-12" tabindex="-1"></a><span class="co"># Define two elements of F and operate with them.</span></span>
-<span id="cb10-13"><a href="algebraic-structures.html#cb10-13" tabindex="-1"></a>a <span class="op">=</span> F(X<span class="op">^</span><span class="dv">4</span><span class="op">+</span>X<span class="op">^</span><span class="dv">2</span><span class="op">+</span><span class="dv">2</span><span class="op">*</span>X)</span>
-<span id="cb10-14"><a href="algebraic-structures.html#cb10-14" tabindex="-1"></a>b <span class="op">=</span> F(<span class="dv">2</span><span class="op">*</span>X<span class="op">^</span><span class="dv">2</span><span class="op">+</span><span class="dv">2</span><span class="op">*</span>X<span class="op">^</span><span class="dv">3</span><span class="op">+</span><span class="dv">1</span>)</span>
-<span id="cb10-15"><a href="algebraic-structures.html#cb10-15" tabindex="-1"></a><span class="co"># Addition</span></span>
-<span id="cb10-16"><a href="algebraic-structures.html#cb10-16" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;a + b = &quot;</span><span class="op">+</span><span class="bu">str</span>(a<span class="op">+</span>b))</span>
-<span id="cb10-17"><a href="algebraic-structures.html#cb10-17" tabindex="-1"></a><span class="co"># Multiplication</span></span>
-<span id="cb10-18"><a href="algebraic-structures.html#cb10-18" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;a * b = &quot;</span><span class="op">+</span><span class="bu">str</span>(a<span class="op">*</span>b))</span>
-<span id="cb10-19"><a href="algebraic-structures.html#cb10-19" tabindex="-1"></a><span class="co"># Inversion</span></span>
-<span id="cb10-20"><a href="algebraic-structures.html#cb10-20" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;a^{-1} = &quot;</span><span class="op">+</span><span class="bu">str</span>(a<span class="op">^</span>(<span class="op">-</span><span class="dv">1</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="algebraic-structures.html#cb11-1" tabindex="-1"></a><span class="co"># Finite field of size 3^5. The optional argument modulus=p </span></span>
+<span id="cb11-2"><a href="algebraic-structures.html#cb11-2" tabindex="-1"></a><span class="co"># allows to specify the irreducible polynomial p to be used.</span></span>
+<span id="cb11-3"><a href="algebraic-structures.html#cb11-3" tabindex="-1"></a>F <span class="op">=</span> GF(<span class="dv">3</span><span class="op">^</span><span class="dv">5</span>, <span class="st">&quot;X&quot;</span>)</span>
+<span id="cb11-4"><a href="algebraic-structures.html#cb11-4" tabindex="-1"></a>F</span>
+<span id="cb11-5"><a href="algebraic-structures.html#cb11-5" tabindex="-1"></a>        </span>
+<span id="cb11-6"><a href="algebraic-structures.html#cb11-6" tabindex="-1"></a><span class="co"># Get the polynomial p(X)=X into the field.</span></span>
+<span id="cb11-7"><a href="algebraic-structures.html#cb11-7" tabindex="-1"></a>X <span class="op">=</span> F(<span class="st">&quot;X&quot;</span>)</span>
+<span id="cb11-8"><a href="algebraic-structures.html#cb11-8" tabindex="-1"></a>        </span>
+<span id="cb11-9"><a href="algebraic-structures.html#cb11-9" tabindex="-1"></a><span class="co"># Show the irreducible polynomial being used.</span></span>
+<span id="cb11-10"><a href="algebraic-structures.html#cb11-10" tabindex="-1"></a>F.modulus()</span>
+<span id="cb11-11"><a href="algebraic-structures.html#cb11-11" tabindex="-1"></a>        </span>
+<span id="cb11-12"><a href="algebraic-structures.html#cb11-12" tabindex="-1"></a><span class="co"># Define two elements of F and operate with them.</span></span>
+<span id="cb11-13"><a href="algebraic-structures.html#cb11-13" tabindex="-1"></a>a <span class="op">=</span> F(X<span class="op">^</span><span class="dv">4</span><span class="op">+</span>X<span class="op">^</span><span class="dv">2</span><span class="op">+</span><span class="dv">2</span><span class="op">*</span>X)</span>
+<span id="cb11-14"><a href="algebraic-structures.html#cb11-14" tabindex="-1"></a>b <span class="op">=</span> F(<span class="dv">2</span><span class="op">*</span>X<span class="op">^</span><span class="dv">2</span><span class="op">+</span><span class="dv">2</span><span class="op">*</span>X<span class="op">^</span><span class="dv">3</span><span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb11-15"><a href="algebraic-structures.html#cb11-15" tabindex="-1"></a><span class="co"># Addition</span></span>
+<span id="cb11-16"><a href="algebraic-structures.html#cb11-16" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;a + b = &quot;</span><span class="op">+</span><span class="bu">str</span>(a<span class="op">+</span>b))</span>
+<span id="cb11-17"><a href="algebraic-structures.html#cb11-17" tabindex="-1"></a><span class="co"># Multiplication</span></span>
+<span id="cb11-18"><a href="algebraic-structures.html#cb11-18" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;a * b = &quot;</span><span class="op">+</span><span class="bu">str</span>(a<span class="op">*</span>b))</span>
+<span id="cb11-19"><a href="algebraic-structures.html#cb11-19" tabindex="-1"></a><span class="co"># Inversion</span></span>
+<span id="cb11-20"><a href="algebraic-structures.html#cb11-20" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;a^{-1} = &quot;</span><span class="op">+</span><span class="bu">str</span>(a<span class="op">^</span>(<span class="op">-</span><span class="dv">1</span>)))</span></code></pre></div>
 </div>
 <div id="solved-exercises-5" class="section level2 unnumbered hasAnchor">
 <h2>Solved exercises<a href="algebraic-structures.html#solved-exercises-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="exercise">
-<p><span id="exr:unlabeled-div-94" class="exercise"><strong>Exercise 6.5  </strong></span></p>
+<p><span id="exr:unlabeled-div-93" class="exercise"><strong>Exercise 6.5  </strong></span></p>
 <ol style="list-style-type: decimal">
 <li><p><em>Consider the group <span class="math inline">\((\mathbb{Z}_7^*, \cdot)\)</span>. How many subgroups does it have? What are the
 generators of each? </em></p></li>
@@ -878,7 +877,7 @@ generators of each? </em></p></li>
 </ol>
 </div>
 <div class="solution">
-<p><span id="unlabeled-div-95" class="solution"><em>Solution</em>. </span></p>
+<p><span id="unlabeled-div-94" class="solution"><em>Solution</em>. </span></p>
 <ol style="list-style-type: decimal">
 <li>First, let’s use the Lagrange theorem to see what we should expect.
 The multiplicative group <span class="math inline">\(\mathbb{Z}_7^*\)</span> has
@@ -920,10 +919,10 @@ To find a generator, instead of going over many possibilities we will use a tric
 </ol>
 </div>
 <div class="exercise">
-<p><span id="exr:unlabeled-div-96" class="exercise"><strong>Exercise 6.6  </strong></span><em>Compute <span class="math inline">\(7^{321172} \pmod{15}\)</span>.</em></p>
+<p><span id="exr:unlabeled-div-95" class="exercise"><strong>Exercise 6.6  </strong></span><em>Compute <span class="math inline">\(7^{321172} \pmod{15}\)</span>.</em></p>
 </div>
 <div class="solution">
-<p><span id="unlabeled-div-97" class="solution"><em>Solution</em>. </span>We can use in theory solve this with fast exponentiation. However, this will require unnecessarily many exponentiations. We can do much better using group theory.</p>
+<p><span id="unlabeled-div-96" class="solution"><em>Solution</em>. </span>We can use in theory solve this with fast exponentiation. However, this will require unnecessarily many exponentiations. We can do much better using group theory.</p>
 <p>Specifically, we utilize Euler’s theorem. We consider the group <span class="math inline">\((\mathbb{Z}_{15}^*, \cdot)\)</span>. Recall that the theorem states that for all <span class="math inline">\(x\in\mathbb{Z}_{15}\)</span>, <span class="math inline">\(x^{|\mathbb{Z}_n^*|}=1\)</span>.</p>
 <p>We start by computing the size of the group. This is the group of invertible elements <span class="math inline">\(\mod 15\)</span> and we know that the number of these elements is
 <span class="math display">\[
@@ -949,14 +948,14 @@ where the last equality holds since <span class="math inline">\(7^8\equiv 1\pmod
 Therefore <span class="math inline">\(7^{321172} \equiv 1 \pmod{15}\)</span>.</p>
 </div>
 <div class="exercise">
-<p><span id="exr:unlabeled-div-98" class="exercise"><strong>Exercise 6.7  </strong></span><em>Consider the group <span class="math inline">\((\mathbb{Z}_{15}^*,\cdot)\)</span>.</em></p>
+<p><span id="exr:unlabeled-div-97" class="exercise"><strong>Exercise 6.7  </strong></span><em>Consider the group <span class="math inline">\((\mathbb{Z}_{15}^*,\cdot)\)</span>.</em></p>
 <ol style="list-style-type: decimal">
 <li><em>Which are its elements?</em></li>
 <li><em>Is the group cyclic?</em></li>
 </ol>
 </div>
 <div class="solution">
-<p><span id="unlabeled-div-99" class="solution"><em>Solution</em>. </span></p>
+<p><span id="unlabeled-div-98" class="solution"><em>Solution</em>. </span></p>
 <ol style="list-style-type: decimal">
 <li><p>The group consists of the invertible elements <span class="math inline">\(\mod 15\)</span>, that is the set
 <span class="math inline">\(\{x \in \{0,\ldots, 14\} | \text{ s.t. } gcd(x,15) = 1\}\)</span>. Since 15 has two
@@ -994,7 +993,7 @@ Therefore, each element can have order <span class="math inline">\(1, 2, 4\)</sp
 </ol>
 </div>
 <div class="exercise">
-<p><span id="exr:unlabeled-div-100" class="exercise"><strong>Exercise 6.8  </strong></span></p>
+<p><span id="exr:unlabeled-div-99" class="exercise"><strong>Exercise 6.8  </strong></span></p>
 <ol style="list-style-type: decimal">
 <li><p><em>What is the largest subgroup of <span class="math inline">\(\mathbb{Z}_{73}^*\)</span> that has a prime order? Find a generator of it</em>.</p></li>
 <li><p><em>Let <span class="math inline">\(p,q\)</span> be prime numbers. When does <span class="math inline">\(\mathbb{Z}_p^*\)</span> has a subgroup of size <span class="math inline">\(q\)</span>?. For what types of primes <span class="math inline">\(p\)</span> are these subgroups maximal in size?</em></p></li>
@@ -1002,7 +1001,7 @@ Therefore, each element can have order <span class="math inline">\(1, 2, 4\)</sp
 </ol>
 </div>
 <div class="solution">
-<p><span id="unlabeled-div-101" class="solution"><em>Solution</em>. </span></p>
+<p><span id="unlabeled-div-100" class="solution"><em>Solution</em>. </span></p>
 <ol style="list-style-type: decimal">
 <li><p>We know that <span class="math inline">\(\mathbb{Z}_{73}^*\)</span> has <span class="math inline">\(\phi(73)=72\)</span> elements. Also, by the Lagrange theorem, we know that the order of every subgroup must divide the order of the group.
 In this case, we have that <span class="math inline">\(72= 2\cdot 2\cdot 2 \cdot 3 \cdot 3\)</span>. The only possibilities for a subgroup of prime order are <span class="math inline">\(2\)</span> and <span class="math inline">\(3\)</span>. Therefore, the biggest prime order subgroup of<br />
@@ -1028,13 +1027,13 @@ the identity element. Therefore, all elements of <span class="math inline">\(\ma
 </ol>
 </div>
 <div class="remark">
-<p><span id="unlabeled-div-102" class="remark"><em>Remark</em>. </span>In the above exercise, the existence of primes <span class="math inline">\(p\)</span> and <span class="math inline">\(q\)</span> can be confusing. Let’s clarify a bit.
+<p><span id="unlabeled-div-101" class="remark"><em>Remark</em>. </span>In the above exercise, the existence of primes <span class="math inline">\(p\)</span> and <span class="math inline">\(q\)</span> can be confusing. Let’s clarify a bit.
 In both the groups <span class="math inline">\(\mathbb{Z}_p^*\)</span> and <span class="math inline">\(\mathbb{H}\leq \mathbb{Z}_p^*\)</span>, the group operation is <em>multiplication <span class="math inline">\(\mod p\)</span></em>. Think of it this way: in the world of
 <span class="math inline">\(\mathbb{Z}_p^*\)</span>, only operations <span class="math inline">\(\mod p\)</span> are applicable. When we are in the subgroup <span class="math inline">\(\mathbb{H}\)</span>, we are <em>still on the same world</em>, we just take a subset of <span class="math inline">\(q\)</span> elements of this world
 but the operations we do on them <em>do not change</em>! Also note that all elements of the subgroup <span class="math inline">\(\mathbb{H}\)</span> belong in the set <span class="math inline">\(\{1,\ldots, p-1\}\)</span> and <em>not</em> <span class="math inline">\(\{1,\ldots, q-1\}\)</span>!</p>
 </div>
 <div class="exercise">
-<p><span id="exr:group-otp" class="exercise"><strong>Exercise 6.9  </strong></span></p>
+<p><span id="exr:group-otp" class="exercise"><strong>Exercise 6.9  </strong></span>(<strong>*</strong>)</p>
 <ol style="list-style-type: decimal">
 <li><p>Show that for any group <span class="math inline">\((\mathbb{G}, \circ)\)</span> and any <span class="math inline">\(a,b\in\mathbb{G}\)</span>, the equation <span class="math inline">\(a = b\circ x\)</span> has a unique solution.</p></li>
 <li><p><em>Consider the group <span class="math inline">\((\mathbb{Z}_n, +)\)</span>.
@@ -1044,7 +1043,7 @@ Construct an encryption scheme with perfectly secrecy using only addition <span 
 </ol>
 </div>
 <div class="solution">
-<p><span id="unlabeled-div-103" class="solution"><em>Solution</em>. </span></p>
+<p><span id="unlabeled-div-102" class="solution"><em>Solution</em>. </span></p>
 <ol style="list-style-type: decimal">
 <li><p>First, we show there exists a solution. Since <span class="math inline">\(\mathbb{G}\)</span> is a group, <span class="math inline">\(b\)</span> has an inverse element, i.e. there exists an element <span class="math inline">\(c\)</span> s.t. <span class="math inline">\(b\circ c=e\)</span> where <span class="math inline">\(e\)</span> denotes the identity element. We claim <span class="math inline">\(x = c\circ a\)</span> is a solution. Indeed we have
 <span class="math display">\[
@@ -1097,7 +1096,7 @@ Subtracting the two relations we get
 therefore an attacker can learn the
 <span class="math inline">\(\mathsf{m}_1 - \mathsf{m}_2\)</span> by only looking the ciphertexts.</p></li>
 <li><p>This question can be answered by making a simple -albeit crucial- observation. In the previous question <em>we did not use any property specific to addition <span class="math inline">\(\mod n\)</span>!</em> We relied solely on the properties of the group. This means that after replacing <span class="math inline">\(\mathbb{Z}_n\)</span> with any group <span class="math inline">\(\mathbb{G}\)</span> and addition mod <span class="math inline">\(n\)</span> with the group operations, we can follow the same arguing!</p>
-<p>Concretely we sample a random group element <span class="math inline">\(\mathsf{k}\in\mathbb{G}\)</span> as the encryption key<a href="#fn29" class="footnote-ref" id="fnref29"><sup>29</sup></a> and define encryption and decryption as
+<p>Concretely we sample a random group element <span class="math inline">\(\mathsf{k}\in\mathbb{G}\)</span> as the encryption key<a href="#fn28" class="footnote-ref" id="fnref28"><sup>28</sup></a> and define encryption and decryption as
 <span class="math display">\[
 \mathsf{Enc}_{\mathsf{k}}(\mathsf{m}) = \mathsf{m}\circ\mathsf{k},\qquad
 \mathsf{Dec}_{\mathsf{k}}(\mathsf{c}) = \mathsf{c}\circ\mathsf{k^{-1}},\qquad
@@ -1107,15 +1106,15 @@ where <span class="math inline">\(\mathsf{k}^{-1}\)</span> denotes the inverse o
 </ol>
 </div>
 <div class="remark">
-<p><span id="unlabeled-div-104" class="remark"><em>Remark</em>. </span>Consider the original one-time-pad defined in the group <span class="math inline">\((\mathbb{Z}_2^k, +)\)</span> where
+<p><span id="unlabeled-div-103" class="remark"><em>Remark</em>. </span>Consider the original one-time-pad defined in the group <span class="math inline">\((\mathbb{Z}_2^k, +)\)</span> where
 <span class="math inline">\(\mathbb{Z}_2^k = \mathbb{Z}_2\times\mathbb{Z}_2\times\ldots\times\mathbb{Z}_2\)</span>. Noting that addition modulo 2 is the xor operation, we can in fact see that this is an instantiation of the above. Also noting that the inverse of <span class="math inline">\(x\in\mathbb{Z}_2^k\)</span> is itself, we get that
 <span class="math inline">\(\mathsf{m}_1 \circ \mathsf{m}_2^{-1} = \mathsf{m}_1 \oplus \mathsf{m}_2\)</span>.</p>
 </div>
 <div class="exercise">
-<p><span id="exr:unlabeled-div-105" class="exercise"><strong>Exercise 6.10  </strong></span>Let <span class="math inline">\(\mathbb G=\langle g\rangle\)</span> be a cyclic group with generator <span class="math inline">\(g\)</span>. Describe an algorithm that on input <span class="math inline">\(h\in\mathbb{G}\)</span> computes its inverse <span class="math inline">\(h^{-1}\)</span>. Is your algorithm efficient?</p>
+<p><span id="exr:unlabeled-div-104" class="exercise"><strong>Exercise 6.10  </strong></span>Let <span class="math inline">\(\mathbb G=\langle g\rangle\)</span> be a cyclic group with generator <span class="math inline">\(g\)</span>. Describe an algorithm that on input <span class="math inline">\(h\in\mathbb{G}\)</span> computes its inverse <span class="math inline">\(h^{-1}\)</span>. Is your algorithm efficient?</p>
 </div>
 <div class="solution">
-<p><span id="unlabeled-div-106" class="solution"><em>Solution</em>. </span>Our goal is to find an element <span class="math inline">\(h&#39;\in\mathbb{G}\)</span> such that <span class="math inline">\(h\cdot h&#39;=1\)</span> where <span class="math inline">\(1\)</span> is the identity of <span class="math inline">\(\mathbb{G}\)</span>. Consider the subgroup <span class="math inline">\(\langle h\rangle\)</span>. The element <span class="math inline">\(h&#39;=h^{j}\)</span> should also belong in this subgroup (every element of a group has an inverse and since <span class="math inline">\(h\in\langle h\rangle\)</span>, its inverse must also be on the group <span class="math inline">\(\langle h\rangle\)</span>).</p>
+<p><span id="unlabeled-div-105" class="solution"><em>Solution</em>. </span>Our goal is to find an element <span class="math inline">\(h&#39;\in\mathbb{G}\)</span> such that <span class="math inline">\(h\cdot h&#39;=1\)</span> where <span class="math inline">\(1\)</span> is the identity of <span class="math inline">\(\mathbb{G}\)</span>. Consider the subgroup <span class="math inline">\(\langle h\rangle\)</span>. The element <span class="math inline">\(h&#39;=h^{j}\)</span> should also belong in this subgroup (every element of a group has an inverse and since <span class="math inline">\(h\in\langle h\rangle\)</span>, its inverse must also be on the group <span class="math inline">\(\langle h\rangle\)</span>).</p>
 <p>We can write <span class="math inline">\(h=h^1\)</span>, <span class="math inline">\(h&#39;=h^k\)</span> and by Euler’s theorem <span class="math inline">\(1 = h^{\text{ord}(h)}\)</span>. Therefore, our equation becomes
 <span class="math display">\[
 h^{1}\cdot h^{k} = h^{\text{ord}(h)} \Leftrightarrow
@@ -1128,7 +1127,7 @@ which means that <span class="math inline">\(k = \text{ord}(h) - 1\)</span>.</p>
 <li>Compute the value <span class="math inline">\(k = \text{ord}(h)-1\)</span></li>
 <li>Compute the value <span class="math inline">\(h^{-1} = h^k\)</span></li>
 </ul>
-<p>The last two steps can be implemented efficiently. For the second, it is evident and the third can be implemented similar to how modular fast exponentiation is implemented<a href="#fn30" class="footnote-ref" id="fnref30"><sup>30</sup></a>. What about the first one? This is in fact unclear. In some groups there are efficient algorithms while in others the problem is assumed to be hard.</p>
+<p>The last two steps can be implemented efficiently. For the second, it is evident and the third can be implemented similar to how modular fast exponentiation is implemented<a href="#fn29" class="footnote-ref" id="fnref29"><sup>29</sup></a>. What about the first one? This is in fact unclear. In some groups there are efficient algorithms while in others the problem is assumed to be hard.</p>
 <p>Therefore the algorithm is efficient iff we apply it in a group <span class="math inline">\(\mathbb{G}\)</span> for which computing the order of group elements is efficient.</p>
 </div>
 
@@ -1136,10 +1135,10 @@ which means that <span class="math inline">\(k = \text{ord}(h) - 1\)</span>.</p>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="24">
-<li id="fn24"><p>A prime example of a different group operation, which appears
-very often in cryptography, is the group law of elliptic curves.<a href="algebraic-structures.html#fnref24" class="footnote-back">↩︎</a></p></li>
-<li id="fn25"><p>Not to be confused with <em>Fermat’s last theorem</em>, which states
+<ol start="23">
+<li id="fn23"><p>A prime example of a different group operation, which appears
+very often in cryptography, is the group law of elliptic curves.<a href="algebraic-structures.html#fnref23" class="footnote-back">↩︎</a></p></li>
+<li id="fn24"><p>Not to be confused with <em>Fermat’s last theorem</em>, which states
 that there are no positive integer solutions for the equation
 <span class="math inline">\(x^n+y^n=z^n\)</span> for any integer <span class="math inline">\(n&gt;2\)</span>. This theorem has become famous
 due to its history: it was originally claimed by Pierre de Fermat in
@@ -1148,28 +1147,28 @@ know a proof but lacking the space to write it down. Such proof was
 never found, and the first known proof of the theorem appeared more
 than three centuries later, in the 1990s, when Andrew Wiles finally
 solved the problem, after the contributions of a long lineage of
-mathematicians.<a href="algebraic-structures.html#fnref25" class="footnote-back">↩︎</a></p></li>
-<li id="fn26"><p>Appendix <a href="ring-theory.html#ring-theory">A</a> contains a more detailed introduction
+mathematicians.<a href="algebraic-structures.html#fnref24" class="footnote-back">↩︎</a></p></li>
+<li id="fn25"><p>Appendix <a href="ring-theory.html#ring-theory">A</a> contains a more detailed introduction
 to this section. It first defines another algebraic structure called
 a <em>ring</em>, which is somewhat between a group and a field, and then
 defines fields as a particular type of ring. This appendix is not
 part of the content for the exam, and the main body of these notes
 is designed to be self-contained, but nevertheless we advise you to
 read Appendix <a href="ring-theory.html#ring-theory">A</a> before reading about fields, since it
-provides a more natural introduction to the topic.<a href="algebraic-structures.html#fnref26" class="footnote-back">↩︎</a></p></li>
-<li id="fn27"><p>Sometimes also called Galois fields, after the mathematician
+provides a more natural introduction to the topic.<a href="algebraic-structures.html#fnref25" class="footnote-back">↩︎</a></p></li>
+<li id="fn26"><p>Sometimes also called Galois fields, after the mathematician
 Évariste Galois, who notably proved that there is no algebraic
 formula for solving polynomial equations of degree higher than <span class="math inline">\(4\)</span>,
-and then died after a duel at the age of 20.<a href="algebraic-structures.html#fnref27" class="footnote-back">↩︎</a></p></li>
-<li id="fn28"><p>See Appendix <a href="refreshers.html#polydiv">D.4</a> for a refresher on how to perform
-polynomial division.<a href="algebraic-structures.html#fnref28" class="footnote-back">↩︎</a></p></li>
-<li id="fn29"><p>Technically, we need to also assume that there exists an efficient algorithm that samples (close to) uniformly distributed elements of <span class="math inline">\(\mathbb{G}\)</span>.<a href="algebraic-structures.html#fnref29" class="footnote-back">↩︎</a></p></li>
-<li id="fn30"><p>One can write <span class="math inline">\(k=\sum_i b_i 2^{i}\)</span> where <span class="math inline">\(b_i\in\{0,1\}\)</span>, compute all powers <span class="math inline">\(h^{2^i}\)</span> and rewrite
+and then died after a duel at the age of 20.<a href="algebraic-structures.html#fnref26" class="footnote-back">↩︎</a></p></li>
+<li id="fn27"><p>See Appendix <a href="refreshers.html#polydiv">D.4</a> for a refresher on how to perform
+polynomial division.<a href="algebraic-structures.html#fnref27" class="footnote-back">↩︎</a></p></li>
+<li id="fn28"><p>Technically, we need to also assume that there exists an efficient algorithm that samples (close to) uniformly distributed elements of <span class="math inline">\(\mathbb{G}\)</span>.<a href="algebraic-structures.html#fnref28" class="footnote-back">↩︎</a></p></li>
+<li id="fn29"><p>One can write <span class="math inline">\(k=\sum_i b_i 2^{i}\)</span> where <span class="math inline">\(b_i\in\{0,1\}\)</span>, compute all powers <span class="math inline">\(h^{2^i}\)</span> and rewrite
 <span class="math display">\[
 h^{k} = h^{\sum_i b_i 2^{i}} = \prod h^{b_i 2^{i}}.
 \]</span>
 Since the bit length of <span class="math inline">\(k\leq \text{ord}(\mathbb{G})\)</span> is at most
-<span class="math inline">\(\mathcal{O}(\log\text{ord}(\mathbb G))\)</span>, the exponentiation has complexity <span class="math inline">\(\mathcal{O}(\log\text{ord}(\mathbb G))\)</span>.<a href="algebraic-structures.html#fnref30" class="footnote-back">↩︎</a></p></li>
+<span class="math inline">\(\mathcal{O}(\log\text{ord}(\mathbb G))\)</span>, the exponentiation has complexity <span class="math inline">\(\mathcal{O}(\log\text{ord}(\mathbb G))\)</span>.<a href="algebraic-structures.html#fnref29" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
