@@ -223,6 +223,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.1" data-path="discrete-logarithm-cryptosystems.html"><a href="discrete-logarithm-cryptosystems.html#the-discrete-logarithm-problem"><i class="fa fa-check"></i><b>9.1</b> The discrete logarithm problem</a></li>
 <li class="chapter" data-level="9.2" data-path="discrete-logarithm-cryptosystems.html"><a href="discrete-logarithm-cryptosystems.html#the-diffie-hellman-key-exchange"><i class="fa fa-check"></i><b>9.2</b> The Diffie-Hellman key exchange</a></li>
 <li class="chapter" data-level="9.3" data-path="discrete-logarithm-cryptosystems.html"><a href="discrete-logarithm-cryptosystems.html#the-elgamal-encryption-scheme"><i class="fa fa-check"></i><b>9.3</b> The ElGamal encryption scheme</a></li>
+<li class="chapter" data-level="9.4" data-path="discrete-logarithm-cryptosystems.html"><a href="discrete-logarithm-cryptosystems.html#formal-security-for-public-key-encryption"><i class="fa fa-check"></i><b>9.4</b> Formal security for public key encryption</a></li>
 <li class="chapter" data-level="" data-path="discrete-logarithm-cryptosystems.html"><a href="discrete-logarithm-cryptosystems.html#solved-exercises-8"><i class="fa fa-check"></i>Solved exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="digital-signatures.html"><a href="digital-signatures.html"><i class="fa fa-check"></i><b>10</b> Digital signatures</a>
@@ -376,12 +377,12 @@ somehow ensure:</p>
 <li><p><em>Integrity:</em> the message was not modified in transit.</p></li>
 </ul>
 <div class="exercise">
-<p><span id="exr:unlabeled-div-169" class="exercise"><strong>Exercise 10.1  </strong></span><em>Think of some real-world examples in which failing to
+<p><span id="exr:unlabeled-div-168" class="exercise"><strong>Exercise 10.1  </strong></span><em>Think of some real-world examples in which failing to
 provide each of these properties might allow some malicious behaviour.</em></p>
 </div>
 <p>The solution to both is to append a signature to the message.</p>
 <div class="definition">
-<p><span id="def:unlabeled-div-170" class="definition"><strong>Definition 10.1  </strong></span><em>A</em> signature scheme <em>is a triple of algorithms</em>
+<p><span id="def:unlabeled-div-169" class="definition"><strong>Definition 10.1  </strong></span><em>A</em> signature scheme <em>is a triple of algorithms</em>
 <span class="math display">\[(\mathsf{KeyGen},\mathsf{Sign},\mathsf{Verify}).\]</span></p>
 <ul>
 <li><p><em>The <span class="math inline">\(\mathsf{KeyGen}\)</span> algorithm produces a pair of keys
@@ -414,7 +415,7 @@ signed the message.</p></li>
 message different from <span class="math inline">\(\mathsf{m}\)</span>.</p></li>
 </ul>
 <div class="exercise">
-<p><span id="exr:unlabeled-div-171" class="exercise"><strong>Exercise 10.2  </strong></span><em>One might think that using an encryption scheme
+<p><span id="exr:unlabeled-div-170" class="exercise"><strong>Exercise 10.2  </strong></span><em>One might think that using an encryption scheme
 already solves these issues. However, that is not true. Take, for
 example, the one-time pad. Show how an attacker against integrity can
 modify the ciphertext so that it decrypts to a different plaintext. Is
@@ -519,7 +520,7 @@ message, and thus we are sending a lot of extra information just for
 authentication and integrity.</p></li>
 </ul>
 <div class="exercise">
-<p><span id="exr:unlabeled-div-172" class="exercise"><strong>Exercise 10.3  </strong></span><em>In an effort to defeat these issues, we consider
+<p><span id="exr:unlabeled-div-171" class="exercise"><strong>Exercise 10.3  </strong></span><em>In an effort to defeat these issues, we consider
 simply signing the first block of length <span class="math inline">\(\ell\)</span> of the message,
 regardless of the size of the message. What is the issue with this?</em></p>
 </div>
@@ -565,7 +566,7 @@ output <span class="math inline">\(1\)</span> (accept the signature), otherwise 
 signature).</p></li>
 </ul>
 <div class="proposition">
-<p><span id="prp:unlabeled-div-173" class="proposition"><strong>Proposition 10.1  </strong></span><em>If the RSA problem is hard and <span class="math inline">\(H\)</span> behaves as an
+<p><span id="prp:unlabeled-div-172" class="proposition"><strong>Proposition 10.1  </strong></span><em>If the RSA problem is hard and <span class="math inline">\(H\)</span> behaves as an
 ideal<a href="#fn49" class="footnote-ref" id="fnref49"><sup>49</sup></a> hash function, then the full-domain hash signature scheme is
 secure.</em></p>
 </div>
@@ -573,7 +574,7 @@ secure.</em></p>
 <div id="solved-exercises-9" class="section level2 unnumbered hasAnchor">
 <h2>Solved exercises<a href="digital-signatures.html#solved-exercises-9" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="exercise">
-<p><span id="exr:unlabeled-div-174" class="exercise"><strong>Exercise 10.4  </strong></span><em>Let <span class="math inline">\(N = 187\)</span>, <span class="math inline">\(e = 7\)</span> be an RSA signature public key. </em></p>
+<p><span id="exr:unlabeled-div-173" class="exercise"><strong>Exercise 10.4  </strong></span><em>Let <span class="math inline">\(N = 187\)</span>, <span class="math inline">\(e = 7\)</span> be an RSA signature public key. </em></p>
 <ol style="list-style-type: decimal">
 <li><em>Check if <span class="math inline">\(\sigma = 168\)</span> is a valid signature for <span class="math inline">\(m = 42\)</span>.</em></li>
 <li><em>Compute the secret signing key.</em></li>
@@ -581,7 +582,7 @@ secure.</em></p>
 </ol>
 </div>
 <div class="solution">
-<p><span id="unlabeled-div-175" class="solution"><em>Solution</em>. </span></p>
+<p><span id="unlabeled-div-174" class="solution"><em>Solution</em>. </span></p>
 <ol style="list-style-type: decimal">
 <li><p>We simply need to use the verification algorithm for RSA signature. That is,
 we need to check if <span class="math inline">\(\sigma^e \equiv m\pmod{N}\)</span>. Applying the given values we have:</p>
@@ -611,14 +612,14 @@ and therefore <span class="math inline">\(36\)</span> is the signature of <span 
 </ol>
 </div>
 <div class="exercise">
-<p><span id="exr:unlabeled-div-176" class="exercise"><strong>Exercise 10.5  </strong></span><em>Alice has an RSA public key <span class="math inline">\(N=46339\)</span>, <span class="math inline">\(e=3\)</span>. She wants to sign the message <span class="math inline">\(7\)</span> and send it to Bob. To avoid the malleability issues of simple RSA, she uses full-domain hash RSA with <span class="math inline">\(H(x) = x\mod 100\)</span> as a hash function. Demonstrate that the choice of the hash function is not good by forging a signature assuming you have seen the message, signature pair <span class="math inline">\(m = 85722, \sigma = 20787\)</span></em></p>
+<p><span id="exr:unlabeled-div-175" class="exercise"><strong>Exercise 10.5  </strong></span><em>Alice has an RSA public key <span class="math inline">\(N=46339\)</span>, <span class="math inline">\(e=3\)</span>. She wants to sign the message <span class="math inline">\(7\)</span> and send it to Bob. To avoid the malleability issues of simple RSA, she uses full-domain hash RSA with <span class="math inline">\(H(x) = x\mod 100\)</span> as a hash function. Demonstrate that the choice of the hash function is not good by forging a signature assuming you have seen the message, signature pair <span class="math inline">\(m = 85722, \sigma = 20787\)</span></em></p>
 </div>
 <div class="solution">
-<p><span id="unlabeled-div-177" class="solution"><em>Solution</em>. </span>The choice is not good since the hash function is not collision resistant. Specifically, for every <span class="math inline">\(x, y = x + k\cdot 100\)</span>, we have <span class="math inline">\(H(x)=H(y)\)</span>. Therefore, we can compute a signature for any message <span class="math inline">\(m&#39; = 85722 + k\cdot 100\)</span> for any <span class="math inline">\(k\)</span>. Let’s for example pick <span class="math inline">\(m&#39; = 85722 - 42\cdot 100 =  81522\)</span>. We claim that <span class="math inline">\(\sigma = 20787\)</span>.</p>
+<p><span id="unlabeled-div-176" class="solution"><em>Solution</em>. </span>The choice is not good since the hash function is not collision resistant. Specifically, for every <span class="math inline">\(x, y = x + k\cdot 100\)</span>, we have <span class="math inline">\(H(x)=H(y)\)</span>. Therefore, we can compute a signature for any message <span class="math inline">\(m&#39; = 85722 + k\cdot 100\)</span> for any <span class="math inline">\(k\)</span>. Let’s for example pick <span class="math inline">\(m&#39; = 85722 - 42\cdot 100 =  81522\)</span>. We claim that <span class="math inline">\(\sigma = 20787\)</span>.</p>
 <p>Indeed, we have <span class="math inline">\(H(m&#39;)=m&#39;\mod 100 = 22\)</span> and <span class="math inline">\(\sigma^e \equiv 20787^{3} \equiv 22\pmod {46339}\)</span>.</p>
 </div>
 <div class="exercise">
-<p><span id="exr:unlabeled-div-178" class="exercise"><strong>Exercise 10.6  </strong></span><em>Recall from Section <a href="public-key-encryption.html#rsa-optimization">8.4</a> that we can use the Chinese Remainder Theorem to speed up message decryption. Since the same computation is used to sign messages via RSA, we can use this optimization for computing RSA signatures as well. Specifically, the signer first represents the secret key <span class="math inline">\(d\)</span> as </em>
+<p><span id="exr:unlabeled-div-177" class="exercise"><strong>Exercise 10.6  </strong></span><em>Recall from Section <a href="public-key-encryption.html#rsa-optimization">8.4</a> that we can use the Chinese Remainder Theorem to speed up message decryption. Since the same computation is used to sign messages via RSA, we can use this optimization for computing RSA signatures as well. Specifically, the signer first represents the secret key <span class="math inline">\(d\)</span> as </em>
 <span class="math display">\[
 d_p = d\pmod {\phi(p)}, \qquad d_q = d\pmod {\phi(q)}
 \]</span>
@@ -637,7 +638,7 @@ d_p = d\pmod {\phi(p)}, \qquad d_q = d\pmod {\phi(q)}
 </ol>
 </div>
 <div class="solution">
-<p><span id="unlabeled-div-179" class="solution"><em>Solution</em>. </span></p>
+<p><span id="unlabeled-div-178" class="solution"><em>Solution</em>. </span></p>
 <ol style="list-style-type: decimal">
 <li><p>We have <span class="math inline">\(\phi(N)=6\cdot 10 = 60\)</span>. We now compute the <span class="math inline">\(p\)</span> and <span class="math inline">\(q\)</span> parts of the key. We have:
 <span class="math display">\[
@@ -683,7 +684,7 @@ When in <span class="math inline">\(\mathbb{Z}_p\)</span>, however, we have <spa
 </ol>
 </div>
 <div class="exercise">
-<p><span id="exr:unlabeled-div-180" class="exercise"><strong>Exercise 10.7  </strong></span>(<strong>*</strong>)</p>
+<p><span id="exr:unlabeled-div-179" class="exercise"><strong>Exercise 10.7  </strong></span>(<strong>*</strong>)</p>
 <p><em>In some cases, we might need to receive a signature on a private message. A good example for it is in voting. When casting a vote, you secretly select a choice and enclose it in an envelope in order to hide it. You then give the
 envelope to an official who makes some checks (you are eligible to vote, haven’t voted etc) and signs the envelope to mark it as a valid ballot. Essentially, the official “signs” your vote without knowing it. This is achieved through the physical means of the envelope.</em></p>
 <p><em>Blind signatures are the cryptographic analogue of the above. Alice, who wants to receive a signature on a message <span class="math inline">\(m\)</span>, first “blinds” the message and gives the blinded message to Bob. Bob -without learning anything about the message- signs the blinded message and gives the “blind” signature to Alice, who “unblinds” it to get a signature on <span class="math inline">\(m\)</span>. Alice can now convince anyone that Bob authorised her message while Bob does not know which message Alice has! </em></p>
@@ -703,7 +704,7 @@ envelope to an official who makes some checks (you are eligible to vote, haven�
 </ol>
 </div>
 <div class="solution">
-<p><span id="unlabeled-div-181" class="solution"><em>Solution</em>. </span></p>
+<p><span id="unlabeled-div-180" class="solution"><em>Solution</em>. </span></p>
 <ol style="list-style-type: decimal">
 <li><p>To blind the message we need to compute <span class="math inline">\(\tilde{m} = m\cdot r^e\pmod N\)</span>. Plugging in the numbers we have</p>
 <p><span class="math display">\[

@@ -223,6 +223,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.1" data-path="discrete-logarithm-cryptosystems.html"><a href="discrete-logarithm-cryptosystems.html#the-discrete-logarithm-problem"><i class="fa fa-check"></i><b>9.1</b> The discrete logarithm problem</a></li>
 <li class="chapter" data-level="9.2" data-path="discrete-logarithm-cryptosystems.html"><a href="discrete-logarithm-cryptosystems.html#the-diffie-hellman-key-exchange"><i class="fa fa-check"></i><b>9.2</b> The Diffie-Hellman key exchange</a></li>
 <li class="chapter" data-level="9.3" data-path="discrete-logarithm-cryptosystems.html"><a href="discrete-logarithm-cryptosystems.html#the-elgamal-encryption-scheme"><i class="fa fa-check"></i><b>9.3</b> The ElGamal encryption scheme</a></li>
+<li class="chapter" data-level="9.4" data-path="discrete-logarithm-cryptosystems.html"><a href="discrete-logarithm-cryptosystems.html#formal-security-for-public-key-encryption"><i class="fa fa-check"></i><b>9.4</b> Formal security for public key encryption</a></li>
 <li class="chapter" data-level="" data-path="discrete-logarithm-cryptosystems.html"><a href="discrete-logarithm-cryptosystems.html#solved-exercises-8"><i class="fa fa-check"></i>Solved exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="digital-signatures.html"><a href="digital-signatures.html"><i class="fa fa-check"></i><b>10</b> Digital signatures</a>
@@ -702,6 +703,26 @@ secure.</em></p>
 <span id="cb15-34"><a href="discrete-logarithm-cryptosystems.html#cb15-34" tabindex="-1"></a>        <span class="bu">print</span>(m)</span>
 <span id="cb15-35"><a href="discrete-logarithm-cryptosystems.html#cb15-35" tabindex="-1"></a>        <span class="cf">break</span></span></code></pre></div>
 </div>
+<div id="formal-security-for-public-key-encryption" class="section level2 hasAnchor" number="9.4">
+<h2><span class="header-section-number">9.4</span> Formal security for public key encryption<a href="discrete-logarithm-cryptosystems.html#formal-security-for-public-key-encryption" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In section <a href="security-definitions.html#security-definitions">4</a> we studied the formal frameworks for analyzing security of encryption schemes. The most important models where</p>
+<ol style="list-style-type: decimal">
+<li>the IND-CPA experiment, where the adversary can ask of encryptions of arbitrary plaintexts and is then challenged to decide whether a ciphertext <span class="math inline">\(c\)</span> is an encryption of <span class="math inline">\(m_0\)</span> or <span class="math inline">\(m_1\)</span> (which the adversary chooses),</li>
+<li>the IND-CCA experiment which is the same with the addition that the adversary can also ask for <em>decryptions</em> of arbitrary ciphertexts, excluding the challenge ciphertext.</li>
+</ol>
+<p>Let us first reflect on the models in the public key setting. The crucial point here is that in this setting <em>anyone can produce ciphertexts of any message on its own</em>. Indeed, no secret is involved in the encryption process; one just need to use the public key! Therefore, IND-CPA is the minimum requirements. Indeed, an adversary can produce on its own encryptions of its choice, which is equivalent to asking for encryptions of messages to the challenger. To put it in other words: a public key encryption scheme that is insecure when given the ability to get encryptions of known messages is insecure in general!</p>
+<p>Next, we ask what security guarantees the presented public key encryptions schemes guarantee. We can already <em>partially</em> answer that with the attacks we saw in section <a href="security-definitions.html#security-definitions">4</a>.</p>
+<ul>
+<li>The plain version of RSA is deterministic and therefore <em>it is not IND-CPA (therefore not IND-CCA) secure</em>.</li>
+<li>The ElGamal encryption scheme is <em>malleable</em> and therefore <em>it is not IND-CCA</em> secure.</li>
+</ul>
+<p>Let’s focus on the second point. As we will see in detail in exercise <a href="discrete-logarithm-cryptosystems.html#exr:elgamalhom">9.9</a>, a pairwise multiplication of El Gamal ciphertexts <span class="math inline">\(c_1,c_2\)</span> encrypting messages <span class="math inline">\(m_1,m_2\)</span> respectively, yields an ElGamal encryption of the message <span class="math inline">\(m = m_1\cdot m_2\)</span> (<span class="math inline">\(m=m_1+m_2\)</span> for the lifted ElGamal case). This means that we can change a ciphertext in a way that the corresponding change in the underlying plaintext is predictable: simply produce an encryption of <span class="math inline">\(c_2=\textsf{Enc}_{pk}(m_2)\)</span> and multiply it with another ciphertext <span class="math inline">\(c_1\)</span> corresponding to some message <span class="math inline">\(m_1\)</span>! Therefore, ElGamal is <em>not</em> IND-CCA secure.</p>
+<p>While we will not prove the next claims, we present the security notions that are satisfied. Note that these are conditioned on <em>assumptions</em>!</p>
+<ol style="list-style-type: decimal">
+<li>If the DDH assumption holds, ElGamal is IND-CPA secure.</li>
+<li>If the RSA assumption holds and the hash function <span class="math inline">\(H\)</span> is ideal (meaning it behaves as a random function), then the RSA-OAEP instantiated with <span class="math inline">\(H\)</span> is CCA-secure.</li>
+</ol>
+</div>
 <div id="solved-exercises-8" class="section level2 unnumbered hasAnchor">
 <h2>Solved exercises<a href="discrete-logarithm-cryptosystems.html#solved-exercises-8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="exercise">
@@ -949,7 +970,7 @@ in exercise <a href="algebraic-structures.html#exr:group-otp">7.9</a> this shoul
 </ul>
 </div>
 <div class="exercise">
-<p><span id="exr:unlabeled-div-165" class="exercise"><strong>Exercise 9.9  </strong></span></p>
+<p><span id="exr:elgamalhom" class="exercise"><strong>Exercise 9.9  </strong></span></p>
 <ol style="list-style-type: decimal">
 <li><p><em>Show that ElGamal is homomorphic with respect to multiplication, that is</em>
 <span class="math display">\[
@@ -968,7 +989,7 @@ same message.</em></p></li>
 </ol>
 </div>
 <div class="solution">
-<p><span id="unlabeled-div-166" class="solution"><em>Solution</em>. </span></p>
+<p><span id="unlabeled-div-165" class="solution"><em>Solution</em>. </span></p>
 <ol style="list-style-type: decimal">
 <li><p>This can be done by straightforward calculations. We have
 <span class="math display">\[
@@ -1006,7 +1027,7 @@ same message.</em></p></li>
 </ol>
 </div>
 <div class="exercise">
-<p><span id="exr:unlabeled-div-167" class="exercise"><strong>Exercise 9.10  </strong></span><em>Alice is a tallying member in an election for a referendum in a university. To vote for yes, a voter
+<p><span id="exr:unlabeled-div-166" class="exercise"><strong>Exercise 9.10  </strong></span><em>Alice is a tallying member in an election for a referendum in a university. To vote for yes, a voter
 sends an encryption of <span class="math inline">\(g^{1}\)</span> using Lifted ElGamal to Alice and to vote no, it sends an encryption of <span class="math inline">\(g^{2}\)</span>.
 Alice then decrypts the message by first computing <span class="math inline">\(M=g^{b}\)</span> and then checking if <span class="math inline">\(M=g^1\)</span> or <span class="math inline">\(M=g^2\)</span>. She does not try to find the actual value if <span class="math inline">\(M\)</span> is neither since it is not
 a valid ballot. She then replies to the voter “Thank you for participation” and tallies her vote. In case the vote is invalid, she sends a message clarifying the voting procedure,
@@ -1015,7 +1036,7 @@ specifically she sends “Please send an encryption of <span class="math inline"
 Alice. Can she learn the choice of Bob? Assume that Bob votes correctly, that is it sends either an encryption of 0 or an encryption of 1.</em></p>
 </div>
 <div class="solution">
-<p><span id="unlabeled-div-168" class="solution"><em>Solution</em>. </span>Eve can use the homomorphic property of ElGamal and the fact that Alice reveals some info about every ciphertext, specifically whether it is an encryption of <span class="math inline">\(1\)</span> or <span class="math inline">\(2\)</span> or not.</p>
+<p><span id="unlabeled-div-167" class="solution"><em>Solution</em>. </span>Eve can use the homomorphic property of ElGamal and the fact that Alice reveals some info about every ciphertext, specifically whether it is an encryption of <span class="math inline">\(1\)</span> or <span class="math inline">\(2\)</span> or not.</p>
 <p>She does the following: first, she computes a fresh encryption of <span class="math inline">\(1\)</span>, that is she computes <span class="math inline">\((c_1&#39;, c_2&#39;) = (g^{r&#39;}, g^1h^{r&#39;})\)</span>. She then computes a fresh ciphertext
 <span class="math display">\[
 (c^*_1, c^*_2) = (c_1, c_2)  \cdot (c_1&#39;, c_2&#39;)
